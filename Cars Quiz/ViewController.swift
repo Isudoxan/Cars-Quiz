@@ -10,7 +10,8 @@ import UIKit
 //
 // TODO:
 //
-// Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.
+// 1.Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.
+// 2. Add app icon.
 //
 
 
