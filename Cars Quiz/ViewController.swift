@@ -10,9 +10,9 @@ import UIKit
 //
 // *TODO*:
 //
-// 1.Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.
+// 1. Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.
 // 2. Add app icon.
-// 3. Run the app on iPhone.
+// 3. Add launch screen.
 //
 
 class Car {
@@ -89,6 +89,8 @@ class MainViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func okButtonTap(_ sender: Any) {
+        carBrandTextField.resignFirstResponder()
+        
         let userGuess = carBrandTextField.text?.lowercased()
         let currentCarName = currentCar?.name.lowercased()
         
@@ -105,6 +107,8 @@ class MainViewController: UIViewController {
         } else {
             showHideResultLabel(result: .incorrectGuess)
         }
+        
+        carBrandTextField.text = nil
     }
     
     
