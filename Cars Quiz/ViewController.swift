@@ -59,12 +59,7 @@ class MainViewController: UIViewController {
         print("Main view loaded!")
         
         self.currentCar = cars[currentCarIndex]
-        let carName = self.currentCar?.imageName
-        
-        if let carName {
-            let carImage = UIImage(named: carName)
-            carImageView.image = carImage
-        }
+        setCarImageForCurrentCar()
     }
     
     
@@ -80,14 +75,21 @@ class MainViewController: UIViewController {
             self.currentCarIndex += 1
             self.currentCar = cars[currentCarIndex]
             
-            let carName = self.currentCar?.imageName
-            
-            if let carName {
-                let carImage = UIImage(named: carName)
-                carImageView.image = carImage
-            }
+            setCarImageForCurrentCar()
         } else {
             print("Try again!")
+        }
+    }
+    
+    
+    // MARK: - Methods
+    
+    func setCarImageForCurrentCar() {
+        let carName = self.currentCar?.imageName
+        
+        if let carName {
+            let carImage = UIImage(named: carName)
+            carImageView.image = carImage
         }
     }
 }
