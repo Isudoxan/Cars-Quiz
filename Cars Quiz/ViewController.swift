@@ -42,6 +42,7 @@ class MainViewController: UIViewController {
     ]
     
     var currentCar: Car?
+    var currentCarIndex = 0
     
     
     // MARK: - UI Components
@@ -57,7 +58,7 @@ class MainViewController: UIViewController {
         
         print("Main view loaded!")
         
-        self.currentCar = cars.first
+        self.currentCar = cars[currentCarIndex]
         let carName = self.currentCar?.imageName
         
         if let carName {
@@ -75,6 +76,16 @@ class MainViewController: UIViewController {
         
         if userGuess == currentCarName {
             print("Wow, great!")
+            
+            self.currentCarIndex += 1
+            self.currentCar = cars[currentCarIndex]
+            
+            let carName = self.currentCar?.imageName
+            
+            if let carName {
+                let carImage = UIImage(named: carName)
+                carImageView.image = carImage
+            }
         } else {
             print("Try again!")
         }
