@@ -41,6 +41,8 @@ class MainViewController: UIViewController {
         Car(name: "bugatti", imageName: "15")
     ]
     
+    var currentCar: Car?
+    
     
     // MARK: - UI Components
     
@@ -54,12 +56,27 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         print("Main view loaded!")
+        
+        self.currentCar = cars.first
+        let carName = self.currentCar?.imageName
+        
+        if let carName {
+            let carImage = UIImage(named: carName)
+            carImageView.image = carImage
+        }
     }
     
     
     // MARK: - Actions
     
     @IBAction func okButtonTap(_ sender: Any) {
+        let userGuess = carBrandTextField.text?.lowercased()
+        let currentCarName = currentCar?.name.lowercased()
         
+        if userGuess == currentCarName {
+            print("Wow, great!")
+        } else {
+            print("Try again!")
+        }
     }
 }
