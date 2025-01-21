@@ -97,8 +97,12 @@ class MainViewController: UIViewController {
         
         if userGuess == currentCarName {
             if self.currentCarIndex == cars.count - 1 {
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                
                 showHideResultLabel(result: .wonGame)
             } else {
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                
                 self.currentCarIndex += 1
                 self.currentCar = cars[currentCarIndex]
                 
@@ -106,6 +110,8 @@ class MainViewController: UIViewController {
                 showHideResultLabel(result: .correctGuess)
             }
         } else {
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
+            
             showHideResultLabel(result: .incorrectGuess)
         }
         
