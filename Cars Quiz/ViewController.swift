@@ -20,8 +20,9 @@ class Car {
 
 class MainViewController: UIViewController {
     
-    // Dictionary of cars names and their images.
+    // MARK: - Properties
     
+    /// Dictionary of cars names and their images.
     var cars: [Car] = [
         Car(name: "nexon", imageName: "1"),
         Car(name: "zhugul", imageName: "2"),
@@ -40,9 +41,25 @@ class MainViewController: UIViewController {
         Car(name: "bugatti", imageName: "15")
     ]
     
+    
+    // MARK: - UI Components
+    
+    @IBOutlet weak var carImageView: UIImageView!
+    @IBOutlet weak var carBrandTextField: UITextField!
+    
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("Main view loaded!")
+    }
+    
+    
+    // MARK: - Actions
+    
+    @IBAction func okButtonTap(_ sender: Any) {
+        
     }
 }
