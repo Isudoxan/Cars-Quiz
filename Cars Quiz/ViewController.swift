@@ -8,12 +8,12 @@
 import UIKit
 
 //
-// TODO:
+// *TODO*:
 //
 // 1.Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.
 // 2. Add app icon.
+// 3. Run the app on iPhone.
 //
-
 
 class Car {
     
