@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var carImageView: UIImageView!
     @IBOutlet weak var carBrandTextField: UITextField!
-    
+    @IBOutlet weak var resultLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -57,6 +57,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         print("Main view loaded!")
+        
+        resultLabel.isHidden = true
         
         self.currentCar = cars[currentCarIndex]
         setCarImageForCurrentCar()
@@ -76,8 +78,10 @@ class MainViewController: UIViewController {
             self.currentCar = cars[currentCarIndex]
             
             setCarImageForCurrentCar()
+            showHideResultLabel(success: true)
         } else {
             print("Try again!")
+            showHideResultLabel(success: false)
         }
     }
     
@@ -91,5 +95,14 @@ class MainViewController: UIViewController {
             let carImage = UIImage(named: carName)
             carImageView.image = carImage
         }
+    }
+    
+    func showHideResultLabel(success: Bool) {
+        resultLabel.text = success ? "Wow, great job!👌" : "Try again🤔"
+        resultLabel.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.resultLabel.isHidden = true
+        })
     }
 }
