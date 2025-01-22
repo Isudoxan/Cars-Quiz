@@ -10,7 +10,7 @@ import UIKit
 //
 // *TODO*:
 //
-// 1. Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.❌
+// 1. Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.✅
 // 2. Add app icon. ✅
 // 3. Add launch screen.✅
 // 4. Ignore whitespaces in the beginning/end of the car name in text field.❌
@@ -71,6 +71,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var carImageView: UIImageView!
     @IBOutlet weak var carBrandTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
+    
+    @IBOutlet weak var levelLabel: UILabel!
     
     
     // MARK: - Lifecycle
@@ -134,15 +136,29 @@ class MainViewController: UIViewController {
         switch result {
         case .correctGuess:
             resultLabel.text = "Wow, great job!👌"
+            self.changeGameLevel()
         case .incorrectGuess:
             resultLabel.text = "Try again🤔"
         case .wonGame:
             resultLabel.text = "You won!!! 🎉🎉🎉"
+            self.levelLabel.text = "GAME OVER!"
         }
         
         resultLabel.isHidden = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.resultLabel.isHidden = true
         })
+    }
+    
+    func changeGameLevel() {
+        if self.currentCarIndex <= 4{
+            self.levelLabel.text = "Level: Easy 🟢"
+        }
+        if self.currentCarIndex > 4 && self.currentCarIndex <= 9{
+            self.levelLabel.text = "Level: Medium 🟠"
+        }
+        if self.currentCarIndex > 9 && self.currentCarIndex <= 14{
+            self.levelLabel.text = "Level: Hard 🔴"
+        }
     }
 }
