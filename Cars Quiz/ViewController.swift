@@ -10,10 +10,10 @@ import UIKit
 //
 // *TODO*:
 //
-// 1. Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.
-// 2. Add app icon.
-// 3. Add launch screen.
-// 4. Ignore whitespaces in the beginning/end of the car name in text field.
+// 1. Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.❌
+// 2. Add app icon. ✅
+// 3. Add launch screen.✅
+// 4. Ignore whitespaces in the beginning/end of the car name in text field.❌
 //
 
 class Car {
