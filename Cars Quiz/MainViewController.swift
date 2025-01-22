@@ -7,11 +7,10 @@
 
 //
 // *TODO*:
-// 1. Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.✅
-// 2. Add app icon. ✅
-// 3. Add launch screen.✅
-// 4. Ignore whitespaces in the beginning/end of the car name in text field.✅
-// 5. The user should be able to use the done button.✅
+// Add score to the game
+// Add tips (if user failed 2 times he can have a suggestion of the word)
+// Add animation for changing images
+// Fix harcoded indexes for easy/medium/hard to be dynamic
 //
 
 import UIKit
@@ -149,10 +148,12 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         if self.currentCarIndex <= 4 {
             self.levelLabel.text = "Level: Easy 🟢"
         }
-        if self.currentCarIndex > 4 && self.currentCarIndex <= 9 {
+        
+        if self.currentCarIndex > 4, self.currentCarIndex <= 9 {
             self.levelLabel.text = "Level: Medium 🟠"
         }
-        if self.currentCarIndex > 9 && self.currentCarIndex <= 14 {
+        
+        if self.currentCarIndex > 9, self.currentCarIndex <= 14 {
             self.levelLabel.text = "Level: Hard 🔴"
         }
     }
