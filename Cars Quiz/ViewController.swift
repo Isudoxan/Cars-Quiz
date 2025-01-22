@@ -5,19 +5,18 @@
 //  Created by Danylo Liubyi on 21.01.2025.
 //
 
-import UIKit
-
 //
 // *TODO*:
-//
 // 1. Display label above the image to show the current level ("Easy 🟢" / "Medium 🟠" / "Hard 🔴") based on car level that is displayed on the image.✅
 // 2. Add app icon. ✅
 // 3. Add launch screen.✅
 // 4. Ignore whitespaces in the beginning/end of the car name in text field.✅
+// 5. The user should be able to use the done button.✅
 //
 
+import UIKit
+
 class Car {
-    
     let name: String
     let imageName: String
     
@@ -33,8 +32,7 @@ enum GameResult {
     case wonGame
 }
 
-
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Properties
     
@@ -65,15 +63,12 @@ class MainViewController: UIViewController {
     var currentCar: Car?
     var currentCarIndex = 0
     
-    
     // MARK: - UI Components
     
     @IBOutlet weak var carImageView: UIImageView!
     @IBOutlet weak var carBrandTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
-    
     @IBOutlet weak var levelLabel: UILabel!
-    
     
     // MARK: - Lifecycle
     
@@ -83,11 +78,11 @@ class MainViewController: UIViewController {
         print("Main view loaded!")
         
         resultLabel.isHidden = true
+        carBrandTextField.delegate = self
         
         self.currentCar = cars[currentCarIndex]
         setCarImageForCurrentCar()
     }
-    
     
     // MARK: - Actions
     
@@ -121,7 +116,6 @@ class MainViewController: UIViewController {
         carBrandTextField.text = nil
     }
     
-    
     // MARK: - Methods
     
     func setCarImageForCurrentCar() {
@@ -152,14 +146,23 @@ class MainViewController: UIViewController {
     }
     
     func changeGameLevel() {
-        if self.currentCarIndex <= 4{
+        if self.currentCarIndex <= 4 {
             self.levelLabel.text = "Level: Easy 🟢"
         }
-        if self.currentCarIndex > 4 && self.currentCarIndex <= 9{
+        if self.currentCarIndex > 4 && self.currentCarIndex <= 9 {
             self.levelLabel.text = "Level: Medium 🟠"
         }
-        if self.currentCarIndex > 9 && self.currentCarIndex <= 14{
+        if self.currentCarIndex > 9 && self.currentCarIndex <= 14 {
             self.levelLabel.text = "Level: Hard 🔴"
         }
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        okButtonTap(self)
+        return true
     }
 }
