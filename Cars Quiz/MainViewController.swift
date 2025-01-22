@@ -7,7 +7,7 @@
 
 //
 // *TODO*:
-// Add score to the game
+// Add score to the game✅
 // Add tips (if user failed 2 times he can have a suggestion of the word)
 // Add animation for changing images
 // Fix harcoded indexes for easy/medium/hard to be dynamic
@@ -68,6 +68,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var carBrandTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -76,11 +77,14 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         print("Main view loaded!")
         
+        self.scoreLabel.text = "1/" + String(self.cars.count)
+        
         resultLabel.isHidden = true
         carBrandTextField.delegate = self
         
         self.currentCar = cars[currentCarIndex]
         setCarImageForCurrentCar()
+        
     }
     
     // MARK: - Actions
@@ -131,6 +135,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         case .correctGuess:
             resultLabel.text = "Wow, great job!👌"
             self.changeGameLevel()
+            self.changeScore()
         case .incorrectGuess:
             resultLabel.text = "Try again🤔"
         case .wonGame:
@@ -156,6 +161,10 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         if self.currentCarIndex > 9, self.currentCarIndex <= 14 {
             self.levelLabel.text = "Level: Hard 🔴"
         }
+    }
+    
+    func changeScore() {
+        self.scoreLabel.text = String(self.currentCarIndex + 1) + "/" + String(self.cars.count)
     }
     
     // MARK: - UITextFieldDelegate
