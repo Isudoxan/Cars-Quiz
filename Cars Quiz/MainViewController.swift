@@ -10,7 +10,7 @@
 //
 // - Add tips (if user failed 2 times he can have a suggestion of the word)
 // - Check if easy / medium / hard logic works okay if cars.count can't be divided by 3 without remainder
-//
+// - Refactor changeGameLevel method to use `switch` instead of `if-else-if-else...`
 //
 // To read:
 // - Differences between UIView.animate & UIView.transition
@@ -94,6 +94,12 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
     
     @IBAction func okButtonTap(_ sender: Any) {
+        performOkAction()
+    }
+    
+    // MARK: - Methods
+    
+    func performOkAction() {
         carBrandTextField.resignFirstResponder()
         
         let userGuessWithSpace = carBrandTextField.text?.lowercased()
@@ -124,8 +130,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             showHideResultLabel(result: .correctGuess)
         }
     }
-    
-    // MARK: - Methods
     
     func setCarImageForCurrentCar() {
         guard let carName = self.currentCar?.imageName else { return }
@@ -164,7 +168,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         let totalCars = self.cars.count
         let firstLevel = totalCars / 3
         let secondLevel = 2 * firstLevel
-
+        
         if self.currentCarIndex + 1 <= firstLevel {
             self.levelLabel.text = "Level: Easy 🟢"
         } else if self.currentCarIndex + 1 <= secondLevel {
@@ -182,8 +186,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        performOkAction()
         
-        okButtonTap(self)
         return true
     }
     
