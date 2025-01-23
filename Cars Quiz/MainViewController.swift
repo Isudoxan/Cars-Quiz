@@ -7,10 +7,14 @@
 
 //
 // *TODO*:
-// Add score to the game✅
-// Add tips (if user failed 2 times he can have a suggestion of the word)
-// Add animation for changing images✅
-// Fix harcoded indexes for easy/medium/hard to be dynamic✅
+//
+// - Add tips (if user failed 2 times he can have a suggestion of the word)
+// - Check if easy / medium / hard logic works okay if cars.count can't be divided by 3 without remainder
+//
+//
+// To read:
+// - Differences between UIView.animate & UIView.transition
+// - Read about `guard` / `defer` / `if` statements
 //
 
 import UIKit
@@ -101,18 +105,17 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
         
         guard userGuess == currentCarName else {
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
+            hapticFeedbackError()
             showHideResultLabel(result: .incorrectGuess)
             
             return
         }
         
         if self.currentCarIndex == cars.count - 1 {
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
-            
+            hapticFeedbackSuccess()
             showHideResultLabel(result: .wonGame)
         } else {
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            hapticFeedbackSuccess()
             
             self.currentCarIndex += 1
             self.currentCar = cars[currentCarIndex]
@@ -125,21 +128,17 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Methods
     
     func setCarImageForCurrentCar() {
-        let carName = self.currentCar?.imageName
-
-        if let carName {
-            let carImage = UIImage(named: carName)
-            
-            UIView.transition(
-                with: carImageView,
-                duration: 0.5,
-                options: .transitionCrossDissolve,
-                animations: {
-                    self.carImageView.image = carImage
-                },
-                completion: nil
-            )
-        }
+        guard let carName = self.currentCar?.imageName else { return }
+        
+        UIView.transition(
+            with: carImageView,
+            duration: 0.5,
+            options: .transitionCrossDissolve,
+            animations: {
+                self.carImageView.image = UIImage(named: carName)
+            },
+            completion: nil
+        )
     }
     
     func showHideResultLabel(result: GameResult) {
@@ -186,5 +185,15 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         okButtonTap(self)
         return true
+    }
+    
+    // MARK: - Helpers
+    
+    func hapticFeedbackSuccess() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+    }
+    
+    func hapticFeedbackError() {
+        UINotificationFeedbackGenerator().notificationOccurred(.error)
     }
 }
