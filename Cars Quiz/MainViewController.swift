@@ -8,14 +8,29 @@
 //
 // *TODO*:
 //
-// - Add tips (if user failed 2 times he can have a suggestion of the word)
+// 2.5 h
+// - Add tips (if user failed 2 times he can have a suggestion of the word, 1 letter of the work is shown + number of `*` to correspond to rest letters count)
 // - Check if easy / medium / hard logic works okay if cars.count can't be divided by 3 without remainder
 // - Refactor changeGameLevel method to use `switch` instead of `if-else-if-else...`
+// - Add text `Score: ` to the `Score label`
+// - Update the score counting logic
+// - - If user guesses the car correctly we show `great job` label for 2 sec forward him to the next level and increment score by 1
+// - - If user doesn't guess the car correctly we show the `Try again` label for 2 sec and forward him to the next level without incrementing the total score (total score stays the same)
+//
+// - - -
+//
+// - Create new Trello project for Cars Quiz and add tasks (and estimate them) for all the following points
+// - Create `develop` branch and start working in develop for future features
+// - Push repo to remote repo on GitHub
+// - Read about iOS Auto Layout & Constraints and how they work in Storyboards
+// - Try make the UI adaptive (responsive) to any device/screen size (don't spend more time than 1h & don't forget to work in the `feature/...` branch)
+// - Implement `quiz gallery` page (main page of the app) with the list of available games which will consist of only `Cars Hero` item and tapping on it will open the game page (more info in Freeform diagram) using UITableView
 //
 // To read:
+//
 // - Differences between UIView.animate & UIView.transition
 // - Read about `guard` / `defer` / `if` statements
-// - Read about `computed properties` and `stored properties`
+// - Read about computed properties vc stored properties vs functions
 //
 
 import UIKit
