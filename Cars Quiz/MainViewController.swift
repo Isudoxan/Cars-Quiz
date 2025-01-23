@@ -10,7 +10,7 @@
 // Add score to the game✅
 // Add tips (if user failed 2 times he can have a suggestion of the word)
 // Add animation for changing images
-// Fix harcoded indexes for easy/medium/hard to be dynamic
+// Fix harcoded indexes for easy/medium/hard to be dynamic✅
 //
 
 import UIKit
@@ -150,15 +150,15 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     func changeGameLevel() {
-        if self.currentCarIndex <= 4 {
+        let totalCars = self.cars.count
+        let firstLevel = totalCars / 3
+        let secondLevel = 2 * firstLevel
+
+        if self.currentCarIndex + 1 <= firstLevel {
             self.levelLabel.text = "Level: Easy 🟢"
-        }
-        
-        if self.currentCarIndex > 4, self.currentCarIndex <= 9 {
+        } else if self.currentCarIndex + 1 <= secondLevel {
             self.levelLabel.text = "Level: Medium 🟠"
-        }
-        
-        if self.currentCarIndex > 9, self.currentCarIndex <= 14 {
+        } else if self.currentCarIndex + 1 <= totalCars {
             self.levelLabel.text = "Level: Hard 🔴"
         }
     }
