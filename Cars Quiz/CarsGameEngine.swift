@@ -7,7 +7,23 @@
 
 import Foundation
 
+class Car {
+    let name: String
+    let imageName: String
+    
+    init(name: String, imageName: String) {
+        self.name = name
+        self.imageName = imageName
+    }
+}
+
 class CarsGameEngine {
+
+    enum GameResult {
+        case correctGuess
+        case incorrectGuess
+        case wonGame
+    }
     
     /// Dictionary of cars names and their images.
     var cars: [Car] = [

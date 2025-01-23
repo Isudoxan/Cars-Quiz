@@ -20,24 +20,7 @@
 
 import UIKit
 
-class Car {
-    let name: String
-    let imageName: String
-    
-    init(name: String, imageName: String) {
-        self.name = name
-        self.imageName = imageName
-    }
-}
-
-enum GameResult {
-    case correctGuess
-    case incorrectGuess
-    case wonGame
-}
-
 class MainViewController: UIViewController, UITextFieldDelegate {
-    
     
     // MARK: - Properties
     
@@ -129,7 +112,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         )
     }
     
-    func showHideResultLabel(result: GameResult) {
+    func showHideResultLabel(result: CarsGameEngine.GameResult) {
         switch result {
         case .correctGuess:
             resultLabel.text = "Wow, great job!👌"
