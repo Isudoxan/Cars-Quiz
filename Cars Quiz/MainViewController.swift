@@ -12,14 +12,14 @@
 // - Add tips (if user failed 2 times he can have a suggestion of the word, 1 letter of the work is shown + number of `*` to correspond to rest letters count)
 // - Check if easy / medium / hard logic works okay if cars.count can't be divided by 3 without remainder
 // - Refactor changeGameLevel method to use `switch` instead of `if-else-if-else...`
-// - Add text `Score: ` to the `Score label`
+// - Add text `Score: ` to the `Score label`✅
 // - Update the score counting logic
 // - - If user guesses the car correctly we show `great job` label for 2 sec forward him to the next level and increment score by 1
 // - - If user doesn't guess the car correctly we show the `Try again` label for 2 sec and forward him to the next level without incrementing the total score (total score stays the same)
 //
 // - - -
 //
-// - Create new Trello project for Cars Quiz and add tasks (and estimate them) for all the following points
+// - Create new Trello project for Cars Quiz and add tasks (and estimate them) for all the following points. When it's done feel free to remove this section from the project
 // - Create `develop` branch and start working in develop for future features
 // - Push repo to remote repo on GitHub
 // - Read about iOS Auto Layout & Constraints and how they work in Storyboards
@@ -63,7 +63,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         print("Main view loaded!")
         
-        self.scoreLabel.text = "1/" + String(cars.count)
+        self.scoreLabel.text = "Score: 1/" + String(cars.count)
         
         resultLabel.isHidden = true
         carBrandTextField.delegate = self
@@ -161,7 +161,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     func changeScore() {
-        self.scoreLabel.text = String(self.currentCarIndex + 1) + "/" + String(cars.count)
+        self.scoreLabel.text = "Score: " + String(self.currentCarIndex + 1) + "/" + String(cars.count)
     }
     
     // MARK: - UITextFieldDelegate
