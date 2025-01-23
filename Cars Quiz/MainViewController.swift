@@ -9,7 +9,7 @@
 // *TODO*:
 //
 // 2.5 h
-// - Add tips (if user failed 2 times he can have a suggestion of the word, 1 letter of the work is shown + number of `*` to correspond to rest letters count)
+// - Add tips (if user failed 2 times he can have a suggestion of the word, 1 letter of the work is shown + number of `*` to correspond to rest letters count)✅
 // - Check if easy / medium / hard logic works okay if cars.count can't be divided by 3 without remainder✅
 // - Refactor changeGameLevel method to use `switch` instead of `if-else-if-else...`✅
 // - Add text `Score: ` to the `Score label`✅
@@ -23,6 +23,7 @@
 // - Create `develop` branch and start working in develop for future features
 // - Push repo to remote repo on GitHub
 // - Read about iOS Auto Layout & Constraints and how they work in Storyboards
+// - Keybord should not overlap UI elements.
 // - Try make the UI adaptive (responsive) to any device/screen size (don't spend more time than 1h & don't forget to work in the `feature/...` branch)
 // - Implement `quiz gallery` page (main page of the app) with the list of available games which will consist of only `Cars Hero` item and tapping on it will open the game page (more info in Freeform diagram) using UITableView
 //
@@ -56,7 +57,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    
+    @IBOutlet weak var hintLabel: UILabel!
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -65,6 +66,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         print("Main view loaded!")
         
         self.scoreLabel.text = "Score: 0/" + String(cars.count)
+        self.hintLabel.isHidden = true
         
         resultLabel.isHidden = true
         carBrandTextField.delegate = self
@@ -76,6 +78,9 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Actions
     
+    @IBAction func hintButtonTap(_ sender: Any) {
+        showHint()
+    }
     @IBAction func okButtonTap(_ sender: Any) {
         performOkAction()
     }
@@ -144,11 +149,23 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             resultLabel.text = "You won!!! 🎉🎉🎉"
             self.levelLabel.text = "GAME OVER!"
         }
-        
+        hintLabel.isHidden = true
         resultLabel.isHidden = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.resultLabel.isHidden = true
         })
+    }
+    
+    func showHint() {
+        if let carName = currentCar?.name {
+            let hintForShow = carName.enumerated().map { index, char in
+                index == 0 ? char : "*"
+            }.map(String.init).joined()
+            hintLabel.isHidden = false
+            hintLabel.text = "Hint: " + hintForShow
+        } else {
+            print("Hint is not available")
+        }
     }
     
     func changeGameLevel() {

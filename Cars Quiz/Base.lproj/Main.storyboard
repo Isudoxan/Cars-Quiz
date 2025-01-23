@@ -29,13 +29,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Car brand" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HdX-3T-IVJ">
-                                <rect key="frame" x="45" y="479" width="209" height="34"/>
+                                <rect key="frame" x="49" y="478" width="209" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wow, great job!👌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYV-2F-M4B">
-                                <rect key="frame" x="45" y="650" width="301" height="26"/>
+                                <rect key="frame" x="49" y="650" width="301" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="21"/>
                                 <nil key="textColor"/>
@@ -64,6 +64,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XD-yN-vCU">
+                                <rect key="frame" x="49" y="564" width="297" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKN-5f-06F">
+                                <rect key="frame" x="49" y="521" width="297" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Show hint🤫"/>
+                                <connections>
+                                    <action selector="hintButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mNw-CK-ORK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -71,6 +87,7 @@
                     <connections>
                         <outlet property="carBrandTextField" destination="HdX-3T-IVJ" id="lvy-OR-SWZ"/>
                         <outlet property="carImageView" destination="fFw-kR-BI6" id="ZXW-2M-uU8"/>
+                        <outlet property="hintLabel" destination="6XD-yN-vCU" id="wE1-Xl-W3y"/>
                         <outlet property="levelLabel" destination="NV1-II-B1i" id="Ley-UZ-dCJ"/>
                         <outlet property="resultLabel" destination="kYV-2F-M4B" id="ZMu-Iw-cQT"/>
                         <outlet property="scoreLabel" destination="dDH-gd-DEu" id="jSK-wR-Qdh"/>
@@ -78,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-553.43511450381675" y="-50"/>
+            <point key="canvasLocation" x="-1547.3282442748091" y="-52.112676056338032"/>
         </scene>
     </scenes>
     <resources>
