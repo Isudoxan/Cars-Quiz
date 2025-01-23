@@ -10,12 +10,12 @@
 //
 // 2.5 h
 // - Add tips (if user failed 2 times he can have a suggestion of the word, 1 letter of the work is shown + number of `*` to correspond to rest letters count)
-// - Check if easy / medium / hard logic works okay if cars.count can't be divided by 3 without remainder
+// - Check if easy / medium / hard logic works okay if cars.count can't be divided by 3 without remainder✅
 // - Refactor changeGameLevel method to use `switch` instead of `if-else-if-else...`✅
 // - Add text `Score: ` to the `Score label`✅
-// - Update the score counting logic
-// - - If user guesses the car correctly we show `great job` label for 2 sec forward him to the next level and increment score by 1
-// - - If user doesn't guess the car correctly we show the `Try again` label for 2 sec and forward him to the next level without incrementing the total score (total score stays the same)
+// - Update the score counting logic✅
+// - - If user guesses the car correctly we show `great job` label for 2 sec forward him to the next level and increment score by 1✅
+// - - If user doesn't guess the car correctly we show the `Try again` label for 2 sec and forward him to the next level without incrementing the total score (total score stays the same)✅
 //
 // - - -
 //
@@ -43,6 +43,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     var currentCar: Car?
     var currentCarIndex = 0
+    var score:Int = 0
     
     var cars: [Car] {
         return gameEngine.cars
@@ -63,7 +64,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         print("Main view loaded!")
         
-        self.scoreLabel.text = "Score: 1/" + String(cars.count)
+        self.scoreLabel.text = "Score: 0/" + String(cars.count)
         
         resultLabel.isHidden = true
         carBrandTextField.delegate = self
@@ -94,6 +95,9 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         guard userGuess == currentCarName else {
             hapticFeedbackError()
+            self.currentCarIndex += 1
+            self.currentCar = cars[currentCarIndex]
+            setCarImageForCurrentCar()
             showHideResultLabel(result: .incorrectGuess)
             
             return
@@ -135,6 +139,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             self.changeScore()
         case .incorrectGuess:
             resultLabel.text = "Try again🤔"
+            self.changeGameLevel()
         case .wonGame:
             resultLabel.text = "You won!!! 🎉🎉🎉"
             self.levelLabel.text = "GAME OVER!"
@@ -165,7 +170,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     func changeScore() {
-        self.scoreLabel.text = "Score: " + String(self.currentCarIndex + 1) + "/" + String(cars.count)
+        self.score += 1
+        self.scoreLabel.text = "Score: " + String(score) + "/" + String(cars.count)
     }
     
     // MARK: - UITextFieldDelegate
