@@ -11,7 +11,7 @@
 // 2.5 h
 // - Add tips (if user failed 2 times he can have a suggestion of the word, 1 letter of the work is shown + number of `*` to correspond to rest letters count)
 // - Check if easy / medium / hard logic works okay if cars.count can't be divided by 3 without remainder
-// - Refactor changeGameLevel method to use `switch` instead of `if-else-if-else...`
+// - Refactor changeGameLevel method to use `switch` instead of `if-else-if-else...`✅
 // - Add text `Score: ` to the `Score label`✅
 // - Update the score counting logic
 // - - If user guesses the car correctly we show `great job` label for 2 sec forward him to the next level and increment score by 1
@@ -150,13 +150,17 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         let totalCars = cars.count
         let firstLevel = totalCars / 3
         let secondLevel = 2 * firstLevel
-        
-        if self.currentCarIndex + 1 <= firstLevel {
+        let currentIndex = self.currentCarIndex + 1
+
+        switch currentIndex {
+        case 1...firstLevel:
             self.levelLabel.text = "Level: Easy 🟢"
-        } else if self.currentCarIndex + 1 <= secondLevel {
+        case (firstLevel + 1)...secondLevel:
             self.levelLabel.text = "Level: Medium 🟠"
-        } else if self.currentCarIndex + 1 <= totalCars {
+        case (secondLevel + 1)...totalCars:
             self.levelLabel.text = "Level: Hard 🔴"
+        default:
+            self.levelLabel.text = "Unknown Level"
         }
     }
     
