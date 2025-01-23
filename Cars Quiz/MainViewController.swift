@@ -96,27 +96,30 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         let userGuess = userGuessWithSpace?.trimmingCharacters(in: .whitespaces)
         let currentCarName = currentCar?.name.lowercased()
         
-        if userGuess == currentCarName {
-            if self.currentCarIndex == cars.count - 1 {
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
-                
-                showHideResultLabel(result: .wonGame)
-            } else {
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
-                
-                self.currentCarIndex += 1
-                self.currentCar = cars[currentCarIndex]
-                
-                setCarImageForCurrentCar()
-                showHideResultLabel(result: .correctGuess)
-            }
-        } else {
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-            
-            showHideResultLabel(result: .incorrectGuess)
+        defer {
+            carBrandTextField.text = nil
         }
         
-        carBrandTextField.text = nil
+        guard userGuess == currentCarName else {
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
+            showHideResultLabel(result: .incorrectGuess)
+            
+            return
+        }
+        
+        if self.currentCarIndex == cars.count - 1 {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            
+            showHideResultLabel(result: .wonGame)
+        } else {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            
+            self.currentCarIndex += 1
+            self.currentCar = cars[currentCarIndex]
+            
+            setCarImageForCurrentCar()
+            showHideResultLabel(result: .correctGuess)
+        }
     }
     
     // MARK: - Methods
