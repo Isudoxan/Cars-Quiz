@@ -9,7 +9,7 @@
 // *TODO*:
 // Add score to the game✅
 // Add tips (if user failed 2 times he can have a suggestion of the word)
-// Add animation for changing images
+// Add animation for changing images✅
 // Fix harcoded indexes for easy/medium/hard to be dynamic✅
 //
 
@@ -123,10 +123,19 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     func setCarImageForCurrentCar() {
         let carName = self.currentCar?.imageName
-        
+
         if let carName {
             let carImage = UIImage(named: carName)
-            carImageView.image = carImage
+            
+            UIView.transition(
+                with: carImageView,
+                duration: 0.5,
+                options: .transitionCrossDissolve,
+                animations: {
+                    self.carImageView.image = carImage
+                },
+                completion: nil
+            )
         }
     }
     
