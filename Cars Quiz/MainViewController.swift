@@ -15,6 +15,7 @@
 // To read:
 // - Differences between UIView.animate & UIView.transition
 // - Read about `guard` / `defer` / `if` statements
+// - Read about `computed properties` and `stored properties`
 //
 
 import UIKit
@@ -37,34 +38,17 @@ enum GameResult {
 
 class MainViewController: UIViewController, UITextFieldDelegate {
     
+    
     // MARK: - Properties
     
-    /// Dictionary of cars names and their images.
-    var cars: [Car] = [
-        // Easy
-        Car(name: "bmw", imageName: "4"),
-        Car(name: "bmw", imageName: "11"),
-        Car(name: "mercedes", imageName: "10"),
-        Car(name: "mercedes", imageName: "7"),
-        Car(name: "mercedes", imageName: "8"),
-        
-        // Medium
-        Car(name: "hyundai", imageName: "14"),
-        Car(name: "bugatti", imageName: "15"),
-        Car(name: "maseratti", imageName: "3"),
-        Car(name: "ferrari", imageName: "5"),
-        Car(name: "mclaren", imageName: "6"),
-        
-        // Hard
-        Car(name: "ferrari", imageName: "13"),
-        Car(name: "corvette", imageName: "12"),
-        Car(name: "delorean", imageName: "9"),
-        Car(name: "nexon", imageName: "1"),
-        Car(name: "zhugul", imageName: "2")
-    ]
+    var gameEngine = CarsGameEngine()
     
     var currentCar: Car?
     var currentCarIndex = 0
+    
+    var cars: [Car] {
+        return gameEngine.cars
+    }
     
     // MARK: - UI Components
     
@@ -81,7 +65,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         print("Main view loaded!")
         
-        self.scoreLabel.text = "1/" + String(self.cars.count)
+        self.scoreLabel.text = "1/" + String(cars.count)
         
         resultLabel.isHidden = true
         carBrandTextField.delegate = self
@@ -165,7 +149,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     func changeGameLevel() {
-        let totalCars = self.cars.count
+        let totalCars = cars.count
         let firstLevel = totalCars / 3
         let secondLevel = 2 * firstLevel
         
@@ -179,7 +163,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     func changeScore() {
-        self.scoreLabel.text = String(self.currentCarIndex + 1) + "/" + String(self.cars.count)
+        self.scoreLabel.text = String(self.currentCarIndex + 1) + "/" + String(cars.count)
     }
     
     // MARK: - UITextFieldDelegate
