@@ -5,35 +5,6 @@
 //  Created by Danylo Liubyi on 21.01.2025.
 //
 
-//
-// *TODO*:
-//
-// 2.5 h
-// - Add tips (if user failed 2 times he can have a suggestion of the word, 1 letter of the work is shown + number of `*` to correspond to rest letters count)✅
-// - Check if easy / medium / hard logic works okay if cars.count can't be divided by 3 without remainder✅
-// - Refactor changeGameLevel method to use `switch` instead of `if-else-if-else...`✅
-// - Add text `Score: ` to the `Score label`✅
-// - Update the score counting logic✅
-// - - If user guesses the car correctly we show `great job` label for 2 sec forward him to the next level and increment score by 1✅
-// - - If user doesn't guess the car correctly we show the `Try again` label for 2 sec and forward him to the next level without incrementing the total score (total score stays the same)✅
-//
-// - - -
-//
-// - Create new Trello project for Cars Quiz and add tasks (and estimate them) for all the following points. When it's done feel free to remove this section from the project
-// - Create `develop` branch and start working in develop for future features
-// - Push repo to remote repo on GitHub
-// - Read about iOS Auto Layout & Constraints and how they work in Storyboards
-// - Keybord should not overlap UI elements.
-// - Try make the UI adaptive (responsive) to any device/screen size (don't spend more time than 1h & don't forget to work in the `feature/...` branch)
-// - Implement `quiz gallery` page (main page of the app) with the list of available games which will consist of only `Cars Hero` item and tapping on it will open the game page (more info in Freeform diagram) using UITableView
-//
-// To read:
-//
-// - Differences between UIView.animate & UIView.transition
-// - Read about `guard` / `defer` / `if` statements
-// - Read about computed properties vc stored properties vs functions
-//
-
 import UIKit
 
 class MainViewController: UIViewController, UITextFieldDelegate {
@@ -58,6 +29,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var hintLabel: UILabel!
+    @IBOutlet weak var emptyUserHint: UILabel!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -70,6 +43,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         resultLabel.isHidden = true
         carBrandTextField.delegate = self
+        
+        emptyUserHint.isHidden = true
         
         self.currentCar = cars[currentCarIndex]
         setCarImageForCurrentCar()
@@ -90,36 +65,50 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     func performOkAction() {
         carBrandTextField.resignFirstResponder()
         
-        let userGuessWithSpace = carBrandTextField.text?.lowercased()
-        let userGuess = userGuessWithSpace?.trimmingCharacters(in: .whitespaces)
-        let currentCarName = currentCar?.name.lowercased()
-        
-        defer {
-            carBrandTextField.text = nil
+        if carBrandTextField.text != "" {
+            let userGuessWithSpace = carBrandTextField.text?.lowercased()
+            let userGuess = userGuessWithSpace?.trimmingCharacters(in: .whitespaces)
+            let currentCarName = currentCar?.name.lowercased()
+            
+            defer {
+                carBrandTextField.text = nil
+            }
+            
+            guard userGuess == currentCarName else {
+                hapticFeedbackError()
+                self.currentCarIndex += 1
+                if currentCarIndex < cars.count{
+                    self.currentCar = cars[currentCarIndex]
+                    setCarImageForCurrentCar()
+                    showHideResultLabel(result: .incorrectGuess)
+                    
+                    return
+                }
+                else{
+                    showHideResultLabel(result: .wonGame)
+                    return
+                }
+            }
+            
+            if self.currentCarIndex == cars.count - 1 {
+                hapticFeedbackSuccess()
+                showHideResultLabel(result: .wonGame)
+            } else {
+                hapticFeedbackSuccess()
+                
+                self.currentCarIndex += 1
+                self.currentCar = cars[currentCarIndex]
+                
+                setCarImageForCurrentCar()
+                showHideResultLabel(result: .correctGuess)
+            }
+        }
+        else{
+            self.emptyUserHint.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                self.emptyUserHint.isHidden = true})
         }
         
-        guard userGuess == currentCarName else {
-            hapticFeedbackError()
-            self.currentCarIndex += 1
-            self.currentCar = cars[currentCarIndex]
-            setCarImageForCurrentCar()
-            showHideResultLabel(result: .incorrectGuess)
-            
-            return
-        }
-        
-        if self.currentCarIndex == cars.count - 1 {
-            hapticFeedbackSuccess()
-            showHideResultLabel(result: .wonGame)
-        } else {
-            hapticFeedbackSuccess()
-            
-            self.currentCarIndex += 1
-            self.currentCar = cars[currentCarIndex]
-            
-            setCarImageForCurrentCar()
-            showHideResultLabel(result: .correctGuess)
-        }
     }
     
     func setCarImageForCurrentCar() {
@@ -149,8 +138,10 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             resultLabel.text = "You won!!! 🎉🎉🎉"
             self.levelLabel.text = "GAME OVER!"
         }
+        
         hintLabel.isHidden = true
         resultLabel.isHidden = false
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.resultLabel.isHidden = true
         })
@@ -158,9 +149,13 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     func showHint() {
         if let carName = currentCar?.name {
-            let hintForShow = carName.enumerated().map { index, char in
-                index == 0 ? char : "*"
-            }.map(String.init).joined()
+            let hintForShow = carName.enumerated()
+                .map { index, char in
+                    index == 0 ? char : "*"
+                }
+                .map(String.init)
+                .joined()
+            
             hintLabel.isHidden = false
             hintLabel.text = "Hint: " + hintForShow
         } else {
