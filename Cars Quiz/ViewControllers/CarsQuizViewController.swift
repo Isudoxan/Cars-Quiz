@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITextFieldDelegate {
+class CarsQuizViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Properties
     
@@ -36,7 +36,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("MainViewController viewDidLoad")
+        print("CarsQuizViewController viewDidLoad")
         
         self.scoreLabel.text = "Score: 0/" + String(cars.count)
         self.hintLabel.isHidden = true

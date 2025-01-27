@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class QuizGalleryViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
@@ -39,6 +41,13 @@ extension QuizGalleryViewController: UITableViewDelegate {
     
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        let carsQuizViewController = storyboard
+            .instantiateViewController(withIdentifier: "CarsQuizViewController") as? CarsQuizViewController
+        
+        guard let carsQuizViewController else { return }
+        
+        navigationController?.pushViewController(carsQuizViewController, animated: true)
     }
 }
 
