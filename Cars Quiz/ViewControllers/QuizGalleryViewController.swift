@@ -19,6 +19,8 @@ class QuizGalleryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Quizes"
          
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "QuizCell")
         

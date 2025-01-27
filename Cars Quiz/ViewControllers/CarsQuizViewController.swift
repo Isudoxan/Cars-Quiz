@@ -38,6 +38,8 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
         
         print("CarsQuizViewController viewDidLoad")
         
+        title = "Cars Hero"
+        
         self.scoreLabel.text = "Score: 0/" + String(cars.count)
         self.hintLabel.isHidden = true
         
