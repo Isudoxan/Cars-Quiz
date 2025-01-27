@@ -18,29 +18,38 @@ class QuizGalleryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "QuizCell")
+        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.reloadData()
         
         print("QuizGalleryViewController viewDidLoad")
     }
 }
 
 extension QuizGalleryViewController: UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped me!")
+        print("TableView didSelectRowAt \(indexPath)")
+    
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
 }
+
 extension QuizGalleryViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return games.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "QuizCell", for: indexPath)
         
         cell.textLabel?.text = games[indexPath.row]
         
