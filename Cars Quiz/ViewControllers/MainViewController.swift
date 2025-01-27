@@ -36,7 +36,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Main view loaded!")
+        print("MainViewController viewDidLoad")
         
         self.scoreLabel.text = "Score: 0/" + String(cars.count)
         self.hintLabel.isHidden = true
