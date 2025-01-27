@@ -7,25 +7,37 @@
 
 import UIKit
 
-
+class Quiz {
+    
+    let title: String
+    var image: String
+    
+    init(title: String, image: String) {
+        self.title = title
+        self.image = image
+    }
+}
 
 class QuizGalleryViewController: UIViewController {
     
-    @IBOutlet var tableView: UITableView!
-    
-    let games = [
-        "Cars Quiz🧩",
+    let quizes = [
+        Quiz(title: "Cars Hero 🚘", image: "CarsQuizLogo")
     ]
+    
+    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Quizes"
          
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "QuizCell")
+        tableView.register(QuizTableViewCell.nib(), forCellReuseIdentifier: QuizTableViewCell.identifier)
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 100
+        tableView.separatorStyle = .none
+        
         tableView.reloadData()
         
         print("QuizGalleryViewController viewDidLoad")
@@ -56,14 +68,17 @@ extension QuizGalleryViewController: UITableViewDelegate {
 extension QuizGalleryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return games.count
+        return quizes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "QuizCell", for: indexPath)
+        guard let quizCell = tableView.dequeueReusableCell(withIdentifier: QuizTableViewCell.identifier, for: indexPath) as? QuizTableViewCell else { return UITableViewCell() }
         
-        cell.textLabel?.text = games[indexPath.row]
+        let quiz = quizes[indexPath.row]
         
-        return cell
+        quizCell.quizTitleLabel.text = quiz.title
+        quizCell.logoImageView.image = UIImage(named: quiz.image)
+        
+        return quizCell
     }
 }
