@@ -29,7 +29,6 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var hintLabel: UILabel!
-    @IBOutlet weak var emptyUserHint: UILabel!
     
     // MARK: - Lifecycle
     
@@ -45,8 +44,6 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
         
         resultLabel.isHidden = true
         carBrandTextField.delegate = self
-        
-        emptyUserHint.isHidden = true
         
         self.currentCar = cars[currentCarIndex]
         setCarImageForCurrentCar()
@@ -104,11 +101,8 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
                 setCarImageForCurrentCar()
                 showHideResultLabel(result: .correctGuess)
             }
-        }
-        else{
-            self.emptyUserHint.isHidden = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                self.emptyUserHint.isHidden = true})
+        } else {
+            presentErrorAlert()
         }
         
     }
@@ -163,6 +157,20 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
         } else {
             print("Hint is not available")
         }
+    }
+    
+    func presentErrorAlert() {
+        let alert = UIAlertController(
+            title: "No car brand",
+            message: "Please enter car brand or use hint!",
+            preferredStyle: .alert
+        )
+        
+        let alertAction = UIAlertAction(title: "Ok!", style: .default)
+        
+        alert.addAction(alertAction)
+        
+        present(alert, animated: true)
     }
     
     func changeGameLevel() {
