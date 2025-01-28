@@ -9,10 +9,16 @@ import UIKit
 
 class QuizTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
+    
     static let identifier = "QuizTableViewCell"
+    
+    // MARK: - UI Components
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var quizTitleLabel: UILabel!
+    
+    // MARK: - Methods
     
     static func nib() -> UINib {
         return UINib(nibName: "QuizTableViewCell", bundle: .main)

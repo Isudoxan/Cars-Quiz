@@ -48,4 +48,9 @@ class CarsGameEngine {
         Car(name: "nexon", imageName: "1"),
         Car(name: "zhugul", imageName: "2")
     ]
+    
+    /// Dictionary of all quizes.
+    let quizes = [
+        Quiz(title: "Cars Hero 🚘", image: "CarsQuizLogo")
+    ]
 }

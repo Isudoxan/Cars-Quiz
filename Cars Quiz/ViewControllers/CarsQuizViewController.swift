@@ -15,7 +15,7 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
     
     var currentCar: Car?
     var currentCarIndex = 0
-    var score:Int = 0
+    var score: Int = 0
     
     var cars: [Car] {
         return gameEngine.cars
