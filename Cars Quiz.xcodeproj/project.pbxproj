@@ -6,30 +6,35 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3D9F9F712D47FC68002FE4A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F9F652D47FC68002FE4A6 /* Assets.xcassets */; };
+		3D9F9F732D47FC68002FE4A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F9F692D47FC68002FE4A6 /* LaunchScreen.storyboard */; };
+		3D9F9F742D47FC68002FE4A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F9F6B2D47FC68002FE4A6 /* Main.storyboard */; };
+		3D9F9F752D47FC68002FE4A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F642D47FC68002FE4A6 /* AppDelegate.swift */; };
+		3D9F9F762D47FC68002FE4A6 /* CarsGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F662D47FC68002FE4A6 /* CarsGameEngine.swift */; };
+		3D9F9F772D47FC68002FE4A6 /* CarsQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F6C2D47FC68002FE4A6 /* CarsQuizViewController.swift */; };
+		3D9F9F782D47FC68002FE4A6 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F6D2D47FC68002FE4A6 /* NavigationController.swift */; };
+		3D9F9F792D47FC68002FE4A6 /* QuizGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F6E2D47FC68002FE4A6 /* QuizGalleryViewController.swift */; };
+		3D9F9F7A2D47FC68002FE4A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F6F2D47FC68002FE4A6 /* SceneDelegate.swift */; };
+		3D9F9F7E2D4805F8002FE4A6 /* QuizTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F9F7D2D4805F8002FE4A6 /* QuizTableViewCell.xib */; };
+		3D9F9F802D4807A1002FE4A6 /* QuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F7F2D4807A1002FE4A6 /* QuizTableViewCell.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		3D9D46612D401197000ABE2C /* Cars Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cars Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D9F9F642D47FC68002FE4A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3D9F9F652D47FC68002FE4A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3D9F9F662D47FC68002FE4A6 /* CarsGameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsGameEngine.swift; sourceTree = "<group>"; };
+		3D9F9F672D47FC68002FE4A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D9F9F682D47FC68002FE4A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3D9F9F6A2D47FC68002FE4A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3D9F9F6C2D47FC68002FE4A6 /* CarsQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsQuizViewController.swift; sourceTree = "<group>"; };
+		3D9F9F6D2D47FC68002FE4A6 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		3D9F9F6E2D47FC68002FE4A6 /* QuizGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGalleryViewController.swift; sourceTree = "<group>"; };
+		3D9F9F6F2D47FC68002FE4A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3D9F9F7D2D4805F8002FE4A6 /* QuizTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizTableViewCell.xib; sourceTree = "<group>"; };
+		3D9F9F7F2D4807A1002FE4A6 /* QuizTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		3D9D46732D401198000ABE2C /* Exceptions for "Cars Quiz" folder in "Cars Quiz" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 3D9D46602D401197000ABE2C /* Cars Quiz */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		3D9D46632D401197000ABE2C /* Cars Quiz */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				3D9D46732D401198000ABE2C /* Exceptions for "Cars Quiz" folder in "Cars Quiz" target */,
-			);
-			path = "Cars Quiz";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3D9D465E2D401197000ABE2C /* Frameworks */ = {
@@ -45,7 +50,7 @@
 		3D9D46582D401197000ABE2C = {
 			isa = PBXGroup;
 			children = (
-				3D9D46632D401197000ABE2C /* Cars Quiz */,
+				3D9F9F702D47FC68002FE4A6 /* Cars Quiz */,
 				3D9D46622D401197000ABE2C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +61,57 @@
 				3D9D46612D401197000ABE2C /* Cars Quiz.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3D9F9F632D47FC68002FE4A6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3D9F9F6D2D47FC68002FE4A6 /* NavigationController.swift */,
+				3D9F9F6C2D47FC68002FE4A6 /* CarsQuizViewController.swift */,
+				3D9F9F6E2D47FC68002FE4A6 /* QuizGalleryViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3D9F9F702D47FC68002FE4A6 /* Cars Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				3D9F9F642D47FC68002FE4A6 /* AppDelegate.swift */,
+				3D9F9F6F2D47FC68002FE4A6 /* SceneDelegate.swift */,
+				3D9F9F632D47FC68002FE4A6 /* ViewControllers */,
+				3D9F9F7C2D4805B0002FE4A6 /* Views */,
+				3D9F9F7B2D47FC8E002FE4A6 /* Engine */,
+				3D9F9F652D47FC68002FE4A6 /* Assets.xcassets */,
+				3D9F9F692D47FC68002FE4A6 /* LaunchScreen.storyboard */,
+				3D9F9F6B2D47FC68002FE4A6 /* Main.storyboard */,
+				3D9F9F672D47FC68002FE4A6 /* Info.plist */,
+			);
+			path = "Cars Quiz";
+			sourceTree = "<group>";
+		};
+		3D9F9F7B2D47FC8E002FE4A6 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				3D9F9F662D47FC68002FE4A6 /* CarsGameEngine.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		3D9F9F7C2D4805B0002FE4A6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D9F9F812D4808AD002FE4A6 /* QuizTableViewCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D9F9F812D4808AD002FE4A6 /* QuizTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D9F9F7D2D4805F8002FE4A6 /* QuizTableViewCell.xib */,
+				3D9F9F7F2D4807A1002FE4A6 /* QuizTableViewCell.swift */,
+			);
+			path = QuizTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,9 +128,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				3D9D46632D401197000ABE2C /* Cars Quiz */,
 			);
 			name = "Cars Quiz";
 			packageProductDependencies = (
@@ -122,6 +175,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D9F9F712D47FC68002FE4A6 /* Assets.xcassets in Resources */,
+				3D9F9F732D47FC68002FE4A6 /* LaunchScreen.storyboard in Resources */,
+				3D9F9F7E2D4805F8002FE4A6 /* QuizTableViewCell.xib in Resources */,
+				3D9F9F742D47FC68002FE4A6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,10 +189,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D9F9F802D4807A1002FE4A6 /* QuizTableViewCell.swift in Sources */,
+				3D9F9F752D47FC68002FE4A6 /* AppDelegate.swift in Sources */,
+				3D9F9F762D47FC68002FE4A6 /* CarsGameEngine.swift in Sources */,
+				3D9F9F772D47FC68002FE4A6 /* CarsQuizViewController.swift in Sources */,
+				3D9F9F782D47FC68002FE4A6 /* NavigationController.swift in Sources */,
+				3D9F9F792D47FC68002FE4A6 /* QuizGalleryViewController.swift in Sources */,
+				3D9F9F7A2D47FC68002FE4A6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3D9F9F692D47FC68002FE4A6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D9F9F682D47FC68002FE4A6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3D9F9F6B2D47FC68002FE4A6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D9F9F6A2D47FC68002FE4A6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3D9D46752D401198000ABE2C /* Debug */ = {

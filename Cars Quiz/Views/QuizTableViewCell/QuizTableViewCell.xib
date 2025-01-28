@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="gWA-bG-5Te" customClass="QuizTableViewCell" customModule="Cars_Quiz" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="439" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gWA-bG-5Te" id="Sgo-YQ-ci2">
+                <rect key="frame" x="0.0" y="0.0" width="439" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q4m-m8-s7O" userLabel="Quiz Logo">
+                        <rect key="frame" x="16" y="0.0" width="407" height="100"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7r-KY-mUY" userLabel="Quiz Title">
+                        <rect key="frame" x="32" y="31.000000000000004" width="140" height="38.333333333333343"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="L7r-KY-mUY" firstAttribute="centerY" secondItem="Sgo-YQ-ci2" secondAttribute="centerY" id="9jh-rs-pbj"/>
+                    <constraint firstItem="L7r-KY-mUY" firstAttribute="leading" secondItem="Sgo-YQ-ci2" secondAttribute="leading" constant="32" id="GqU-a8-R4P"/>
+                    <constraint firstAttribute="trailing" secondItem="Q4m-m8-s7O" secondAttribute="trailing" constant="16" id="f3y-bk-Bse"/>
+                    <constraint firstItem="Q4m-m8-s7O" firstAttribute="top" secondItem="Sgo-YQ-ci2" secondAttribute="top" id="jAc-jZ-7PJ"/>
+                    <constraint firstAttribute="bottom" secondItem="Q4m-m8-s7O" secondAttribute="bottom" id="kIk-oR-R3s"/>
+                    <constraint firstItem="Q4m-m8-s7O" firstAttribute="leading" secondItem="Sgo-YQ-ci2" secondAttribute="leading" constant="16" id="nLA-R9-6jw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="logoImageView" destination="Q4m-m8-s7O" id="BeQ-Kx-06q"/>
+                <outlet property="quizTitleLabel" destination="L7r-KY-mUY" id="Diq-JW-6HZ"/>
+            </connections>
+            <point key="canvasLocation" x="-370.2290076335878" y="-118.30985915492958"/>
+        </tableViewCell>
+    </objects>
+</document>
