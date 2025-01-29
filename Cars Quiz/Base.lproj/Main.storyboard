@@ -139,9 +139,9 @@
                         <keyboardLayoutGuide key="keyboard" id="RBX-3H-SLs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="RBX-3H-SLs" firstAttribute="top" secondItem="JE9-RC-U1V" secondAttribute="bottom" id="52v-b0-IfS"/>
                             <constraint firstItem="JE9-RC-U1V" firstAttribute="top" secondItem="boL-ne-7zc" secondAttribute="top" id="GB8-aw-iOS"/>
                             <constraint firstItem="boL-ne-7zc" firstAttribute="trailing" secondItem="JE9-RC-U1V" secondAttribute="trailing" id="PZd-Rz-aZo"/>
-                            <constraint firstItem="boL-ne-7zc" firstAttribute="bottom" secondItem="JE9-RC-U1V" secondAttribute="bottom" id="Pgx-AZ-8W9"/>
                             <constraint firstItem="JE9-RC-U1V" firstAttribute="leading" secondItem="boL-ne-7zc" secondAttribute="leading" id="mLo-le-7Yo"/>
                         </constraints>
                     </view>
@@ -153,6 +153,7 @@
                         <outlet property="levelLabel" destination="NV1-II-B1i" id="Ley-UZ-dCJ"/>
                         <outlet property="resultLabel" destination="kYV-2F-M4B" id="ZMu-Iw-cQT"/>
                         <outlet property="scoreLabel" destination="dDH-gd-DEu" id="jSK-wR-Qdh"/>
+                        <outlet property="scrollView" destination="JE9-RC-U1V" id="iM4-U0-iwW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

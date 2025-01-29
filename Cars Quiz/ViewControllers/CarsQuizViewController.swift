@@ -23,6 +23,7 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - UI Components
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var carImageView: UIImageView!
     @IBOutlet weak var carBrandTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
@@ -48,6 +49,28 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
         self.currentCar = cars[currentCarIndex]
         setCarImageForCurrentCar()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+//        self.scrollView.setContentOffset(CGPoint(x: 0, y: 1000), animated: true)
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - Keyboard Handling
+        
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            let keyboardHeight = keyboardFrame.height
+            scrollView.contentInset.bottom = keyboardHeight
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        scrollView.contentInset.bottom = 0
     }
     
     // MARK: - Actions
