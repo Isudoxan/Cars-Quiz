@@ -96,16 +96,13 @@ class CarsGameEngine {
             }
         }
         
-        // TODO: Replace with `guard`.
-        if currentCarIndex == cars.count - 1 {
-            return .wonGame
-        } else {
-            currentCarIndex += 1
-            currentCar = cars[currentCarIndex]
-            incrementScore()
-            
-            return .correct
-        }
+        guard currentCarIndex < cars.count - 1 else { return .wonGame }
+
+        currentCarIndex += 1
+        currentCar = cars[currentCarIndex]
+        incrementScore()
+
+        return .correct
     }
     
     func incrementScore() {
