@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D85BD792D4AA09900D2BC03 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D85BD782D4AA09900D2BC03 /* Helpers.swift */; };
 		3D9F9F712D47FC68002FE4A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F9F652D47FC68002FE4A6 /* Assets.xcassets */; };
 		3D9F9F732D47FC68002FE4A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F9F692D47FC68002FE4A6 /* LaunchScreen.storyboard */; };
 		3D9F9F742D47FC68002FE4A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F9F6B2D47FC68002FE4A6 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D85BD782D4AA09900D2BC03 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		3D9D46612D401197000ABE2C /* Cars Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cars Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9F9F642D47FC68002FE4A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D9F9F652D47FC68002FE4A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,6 +49,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D85BD772D4AA08400D2BC03 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3D85BD782D4AA09900D2BC03 /* Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3D85BD7A2D4AA0E600D2BC03 /* Cars Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				3D9F9F6C2D47FC68002FE4A6 /* CarsQuizViewController.swift */,
+				3D9F9F7B2D47FC8E002FE4A6 /* Engine */,
+			);
+			path = "Cars Quiz";
+			sourceTree = "<group>";
+		};
+		3D85BD7B2D4AA10300D2BC03 /* Quizes */ = {
+			isa = PBXGroup;
+			children = (
+				3D85BD7A2D4AA0E600D2BC03 /* Cars Quiz */,
+			);
+			path = Quizes;
+			sourceTree = "<group>";
+		};
 		3D9D46582D401197000ABE2C = {
 			isa = PBXGroup;
 			children = (
@@ -67,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				3D9F9F6D2D47FC68002FE4A6 /* NavigationController.swift */,
-				3D9F9F6C2D47FC68002FE4A6 /* CarsQuizViewController.swift */,
 				3D9F9F6E2D47FC68002FE4A6 /* QuizGalleryViewController.swift */,
 			);
 			path = ViewControllers;
@@ -78,9 +104,10 @@
 			children = (
 				3D9F9F642D47FC68002FE4A6 /* AppDelegate.swift */,
 				3D9F9F6F2D47FC68002FE4A6 /* SceneDelegate.swift */,
+				3D85BD7B2D4AA10300D2BC03 /* Quizes */,
 				3D9F9F632D47FC68002FE4A6 /* ViewControllers */,
 				3D9F9F7C2D4805B0002FE4A6 /* Views */,
-				3D9F9F7B2D47FC8E002FE4A6 /* Engine */,
+				3D85BD772D4AA08400D2BC03 /* Helpers */,
 				3D9F9F652D47FC68002FE4A6 /* Assets.xcassets */,
 				3D9F9F692D47FC68002FE4A6 /* LaunchScreen.storyboard */,
 				3D9F9F6B2D47FC68002FE4A6 /* Main.storyboard */,
@@ -192,6 +219,7 @@
 				3D9F9F802D4807A1002FE4A6 /* QuizTableViewCell.swift in Sources */,
 				3D9F9F752D47FC68002FE4A6 /* AppDelegate.swift in Sources */,
 				3D9F9F762D47FC68002FE4A6 /* CarsGameEngine.swift in Sources */,
+				3D85BD792D4AA09900D2BC03 /* Helpers.swift in Sources */,
 				3D9F9F772D47FC68002FE4A6 /* CarsQuizViewController.swift in Sources */,
 				3D9F9F782D47FC68002FE4A6 /* NavigationController.swift in Sources */,
 				3D9F9F792D47FC68002FE4A6 /* QuizGalleryViewController.swift in Sources */,

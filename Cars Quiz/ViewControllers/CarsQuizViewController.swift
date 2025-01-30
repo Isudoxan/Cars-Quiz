@@ -23,13 +23,13 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - UI Components
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var carImageView: UIImageView!
     @IBOutlet weak var carBrandTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var hintLabel: UILabel!
-    @IBOutlet weak var emptyUserHint: UILabel!
     
     // MARK: - Lifecycle
     
@@ -46,11 +46,31 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
         resultLabel.isHidden = true
         carBrandTextField.delegate = self
         
-        emptyUserHint.isHidden = true
-        
         self.currentCar = cars[currentCarIndex]
         setCarImageForCurrentCar()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+//        self.scrollView.setContentOffset(CGPoint(x: 0, y: 1000), animated: true)
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - Keyboard Handling
+        
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            let keyboardHeight = keyboardFrame.height
+            scrollView.contentInset.bottom = keyboardHeight
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        scrollView.contentInset.bottom = 0
     }
     
     // MARK: - Actions
@@ -104,11 +124,8 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
                 setCarImageForCurrentCar()
                 showHideResultLabel(result: .correctGuess)
             }
-        }
-        else{
-            self.emptyUserHint.isHidden = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                self.emptyUserHint.isHidden = true})
+        } else {
+            presentErrorAlert()
         }
         
     }
@@ -163,6 +180,20 @@ class CarsQuizViewController: UIViewController, UITextFieldDelegate {
         } else {
             print("Hint is not available")
         }
+    }
+    
+    func presentErrorAlert() {
+        let alert = UIAlertController(
+            title: "No car brand",
+            message: "Please enter car brand or use hint!",
+            preferredStyle: .alert
+        )
+        
+        let alertAction = UIAlertAction(title: "Ok!", style: .default)
+        
+        alert.addAction(alertAction)
+        
+        present(alert, animated: true)
     }
     
     func changeGameLevel() {
