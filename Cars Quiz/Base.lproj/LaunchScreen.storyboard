@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -13,16 +13,14 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9hU-19-VBr">
-                                <rect key="frame" x="76" y="270" width="240" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9hU-19-VBr">
+                                <rect key="frame" x="40" y="250" width="334" height="396"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to &quot;Cars Quiz App&quot;!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aV6-cN-3cM">
-                                <rect key="frame" x="78" y="116" width="236" height="146"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to &quot;Cars Quiz App&quot;!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aV6-cN-3cM">
+                                <rect key="frame" x="40" y="119" width="334" height="121"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -30,6 +28,18 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="tableCellBlueTextColor"/>
+                        <constraints>
+                            <constraint firstItem="9hU-19-VBr" firstAttribute="top" secondItem="aV6-cN-3cM" secondAttribute="bottom" constant="10" id="4WZ-jt-eIe"/>
+                            <constraint firstItem="9hU-19-VBr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7Yf-9A-IgS"/>
+                            <constraint firstItem="aV6-cN-3cM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="75" id="DFh-sI-a3j"/>
+                            <constraint firstItem="9hU-19-VBr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="LrO-BU-Afi"/>
+                            <constraint firstItem="aV6-cN-3cM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="cXU-DL-48o"/>
+                            <constraint firstItem="9hU-19-VBr" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="faW-VP-5ff"/>
+                            <constraint firstItem="9hU-19-VBr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="250" id="jzA-UP-Ndv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9hU-19-VBr" secondAttribute="trailing" constant="40" id="nvU-LN-xDB"/>
+                            <constraint firstAttribute="bottom" secondItem="9hU-19-VBr" secondAttribute="bottom" constant="250" id="qb1-Xk-zy8"/>
+                            <constraint firstAttribute="trailing" secondItem="aV6-cN-3cM" secondAttribute="trailing" constant="40" id="zgI-au-nqg"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
