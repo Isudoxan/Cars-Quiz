@@ -49,13 +49,15 @@ extension QuizGalleryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        let carsQuizViewController = storyboard
-            .instantiateViewController(withIdentifier: "CarsQuizViewController") as? CarsQuizViewController
-        
-        guard let carsQuizViewController else { return }
-        
-        navigationController?.pushViewController(carsQuizViewController, animated: true)
+        if indexPath.row == 0 {
+            let storyboard = UIStoryboard(name: "Main", bundle: .main)
+            if let carsQuizViewController = storyboard.instantiateViewController(withIdentifier: "CarsQuizViewController") as? CarsQuizViewController {
+                navigationController?.pushViewController(carsQuizViewController, animated: true)
+            }
+        } else if indexPath.row == 1 {
+            let homophonesViewController = HomophonesViewController()
+            navigationController?.pushViewController(homophonesViewController, animated: true)
+        }
     }
 }
 
