@@ -29,7 +29,7 @@ class QuizGalleryViewController: UIViewController {
     
     private func setupTableView() {
         tableView.register(QuizTableViewCell.self, forCellReuseIdentifier: QuizTableViewCell.identifier)
-
+        
         tableView.rowHeight = 100
         tableView.separatorStyle = .none
         

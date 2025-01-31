@@ -63,7 +63,7 @@ class QuizTableViewCell: UITableViewCell {
         let imageViewConstraints = [
             logoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             logoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
         
