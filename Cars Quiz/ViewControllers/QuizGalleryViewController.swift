@@ -1,4 +1,3 @@
-//
 //  QuizGalleryViewController.swift
 //  Cars Quiz
 //
@@ -7,22 +6,7 @@
 
 import UIKit
 
-class Quiz {
-    
-    let title: String
-    var image: String
-    
-    init(title: String, image: String) {
-        self.title = title
-        self.image = image
-    }
-}
-
 class QuizGalleryViewController: UIViewController {
-    
-    // MARK: - Properties
-    
-    var gameEngine = CarsGameEngine()
     
     // MARK: - UI Components
     
@@ -34,21 +18,28 @@ class QuizGalleryViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Quizes"
-         
-        tableView.register(QuizTableViewCell.nib(), forCellReuseIdentifier: QuizTableViewCell.identifier)
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 100
-        tableView.separatorStyle = .none
-        
+        setupTableView()
         tableView.reloadData()
         
         print("QuizGalleryViewController viewDidLoad")
     }
+    
+    // MARK: - Methods
+    
+    private func setupTableView() {
+        tableView.register(QuizTableViewCell.self, forCellReuseIdentifier: QuizTableViewCell.identifier)
+
+        tableView.rowHeight = 100
+        tableView.separatorStyle = .none
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
 }
 
-// MARK: - Methods
+// MARK: - UITableViewDelegate
+
 extension QuizGalleryViewController: UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,8 +47,6 @@ extension QuizGalleryViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("TableView didSelectRowAt \(indexPath)")
-    
         tableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
@@ -73,16 +62,14 @@ extension QuizGalleryViewController: UITableViewDelegate {
 extension QuizGalleryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gameEngine.quizes.count
+        return QuizProvider.quizes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let quizCell = tableView.dequeueReusableCell(withIdentifier: QuizTableViewCell.identifier, for: indexPath) as? QuizTableViewCell else { return UITableViewCell() }
+        let quiz = QuizProvider.quizes[indexPath.row]
         
-        let quiz = gameEngine.quizes[indexPath.row]
-        
-        quizCell.quizTitleLabel.text = quiz.title
-        quizCell.logoImageView.image = UIImage(named: quiz.image)
+        quizCell.configure(with: quiz.image, and: quiz.title)
         
         return quizCell
     }
