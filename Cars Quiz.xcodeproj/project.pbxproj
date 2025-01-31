@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0F69712D4CE79000C4196B /* StyledQuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F69702D4CE79000C4196B /* StyledQuizProvider.swift */; };
+		3D0F69742D4CF24B00C4196B /* HomophonesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F69732D4CF24B00C4196B /* HomophonesViewController.swift */; };
 		3D85BD792D4AA09900D2BC03 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D85BD782D4AA09900D2BC03 /* Helpers.swift */; };
 		3D913FDB2D4BEE9D0035F3DD /* QuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D913FDA2D4BEE990035F3DD /* QuizProvider.swift */; };
 		3D9F9F712D47FC68002FE4A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F9F652D47FC68002FE4A6 /* Assets.xcassets */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D0F69702D4CE79000C4196B /* StyledQuizProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledQuizProvider.swift; sourceTree = "<group>"; };
+		3D0F69732D4CF24B00C4196B /* HomophonesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomophonesViewController.swift; sourceTree = "<group>"; };
 		3D85BD782D4AA09900D2BC03 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		3D913FDA2D4BEE990035F3DD /* QuizProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizProvider.swift; sourceTree = "<group>"; };
 		3D9D46612D401197000ABE2C /* Cars Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cars Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D0F69722D4CF21C00C4196B /* Homophones Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				3D0F69732D4CF24B00C4196B /* HomophonesViewController.swift */,
+			);
+			path = "Homophones Quiz";
+			sourceTree = "<group>";
+		};
 		3D85BD772D4AA08400D2BC03 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -60,8 +72,8 @@
 		3D85BD7A2D4AA0E600D2BC03 /* Cars Quiz */ = {
 			isa = PBXGroup;
 			children = (
-				3D9F9F662D47FC68002FE4A6 /* CarsGameEngine.swift */,
 				3D9F9F6C2D47FC68002FE4A6 /* CarsQuizViewController.swift */,
+				3D9F9F662D47FC68002FE4A6 /* CarsGameEngine.swift */,
 			);
 			path = "Cars Quiz";
 			sourceTree = "<group>";
@@ -70,6 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				3D913FDA2D4BEE990035F3DD /* QuizProvider.swift */,
+				3D0F69702D4CE79000C4196B /* StyledQuizProvider.swift */,
+				3D0F69722D4CF21C00C4196B /* Homophones Quiz */,
 				3D85BD7A2D4AA0E600D2BC03 /* Cars Quiz */,
 			);
 			path = Quizes;
@@ -206,8 +220,10 @@
 				3D85BD792D4AA09900D2BC03 /* Helpers.swift in Sources */,
 				3D9F9F772D47FC68002FE4A6 /* CarsQuizViewController.swift in Sources */,
 				3D9F9F782D47FC68002FE4A6 /* NavigationController.swift in Sources */,
+				3D0F69712D4CE79000C4196B /* StyledQuizProvider.swift in Sources */,
 				3D9F9F792D47FC68002FE4A6 /* QuizGalleryViewController.swift in Sources */,
 				3D9F9F7A2D47FC68002FE4A6 /* SceneDelegate.swift in Sources */,
+				3D0F69742D4CF24B00C4196B /* HomophonesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

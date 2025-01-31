@@ -29,7 +29,7 @@ class QuizGalleryViewController: UIViewController {
     
     private func setupTableView() {
         tableView.register(QuizTableViewCell.self, forCellReuseIdentifier: QuizTableViewCell.identifier)
-
+        
         tableView.rowHeight = 100
         tableView.separatorStyle = .none
         
@@ -49,27 +49,29 @@ extension QuizGalleryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        let carsQuizViewController = storyboard
-            .instantiateViewController(withIdentifier: "CarsQuizViewController") as? CarsQuizViewController
-        
-        guard let carsQuizViewController else { return }
-        
-        navigationController?.pushViewController(carsQuizViewController, animated: true)
+        if indexPath.row == 0 {
+            let storyboard = UIStoryboard(name: "Main", bundle: .main)
+            if let carsQuizViewController = storyboard.instantiateViewController(withIdentifier: "CarsQuizViewController") as? CarsQuizViewController {
+                navigationController?.pushViewController(carsQuizViewController, animated: true)
+            }
+        } else if indexPath.row == 1 {
+            let homophonesViewController = HomophonesViewController()
+            navigationController?.pushViewController(homophonesViewController, animated: true)
+        }
     }
 }
 
 extension QuizGalleryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return QuizProvider.quizes.count
+        return StyledQuizProvider.styledQuizes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let quizCell = tableView.dequeueReusableCell(withIdentifier: QuizTableViewCell.identifier, for: indexPath) as? QuizTableViewCell else { return UITableViewCell() }
-        let quiz = QuizProvider.quizes[indexPath.row]
+        let styledQuiz = StyledQuizProvider.styledQuizes[indexPath.row]
         
-        quizCell.configure(with: quiz.image, and: quiz.title)
+        quizCell.configure(with: styledQuiz)
         
         return quizCell
     }

@@ -29,7 +29,6 @@ class QuizTableViewCell: UITableViewCell {
         myLabel.translatesAutoresizingMaskIntoConstraints = false
         myLabel.numberOfLines = 1
         myLabel.font = .boldSystemFont(ofSize: 26)
-        myLabel.textColor = .white
         
         return myLabel
     }()
@@ -63,7 +62,7 @@ class QuizTableViewCell: UITableViewCell {
         let imageViewConstraints = [
             logoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             logoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
         
@@ -77,17 +76,13 @@ class QuizTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(labelConstraints)
     }
     
-    public func configure(with logo: UIImage?, and title: String?) {
+    public func configure(with styledQuiz: StyledQuiz) {
+        let quiz = styledQuiz.quiz
+        let style = styledQuiz.style
+        let logo = UIImage(named: quiz.image)
+        
         logoImageView.image = logo
-        quizTitleLabel.text = title
-    }
-    
-    public func configure(with logo: String?, and title: String?) {
-        if let logo {
-            let image = UIImage(named: logo)
-            logoImageView.image = image
-        }
-    
-        quizTitleLabel.text = title
+        quizTitleLabel.textColor = style.titleColor
+        quizTitleLabel.text = quiz.title
     }
 }
