@@ -6,10 +6,18 @@
 //
 
 class Quiz {
+    
+    enum QuizType {
+        case carsHero
+        case homophonesHero
+    }
+    
+    let type: QuizType
     let title: String
     var image: String
     
-    init(title: String, image: String) {
+    init(type: QuizType, title: String, image: String) {
+        self.type = type
         self.title = title
         self.image = image
     }
@@ -17,10 +25,9 @@ class Quiz {
 
 class QuizProvider {
     static let quizes = [
-        Quiz(title: "Cars Hero 🚘", image: "CarsQuizLogo"),
-        Quiz(title: "Homophones Hero 🗣️", image: "HomophonesQuizLogo"),
-        Quiz(title: "Cars Hero 🚘", image: "CarsQuizLogo"),
-        Quiz(title: "Homophones Hero 🗣️", image: "HomophonesQuizLogo")
-        
+        Quiz(type: .carsHero, title: "Cars Hero 🚘", image: "CarsQuizLogo"),
+        Quiz(type: .homophonesHero, title: "Homophones Hero 🗣️", image: "HomophonesQuizLogo"),
+        Quiz(type: .carsHero, title: "Cars Hero 🚘", image: "CarsQuizLogo"),
+        Quiz(type: .homophonesHero, title: "Homophones Hero 🗣️", image: "HomophonesQuizLogo")
     ]
 }

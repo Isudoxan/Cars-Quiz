@@ -62,14 +62,14 @@ extension QuizGalleryViewController: UITableViewDelegate {
 extension QuizGalleryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return QuizProvider.quizes.count
+        return StyledQuizProvider.styledQuizes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let quizCell = tableView.dequeueReusableCell(withIdentifier: QuizTableViewCell.identifier, for: indexPath) as? QuizTableViewCell else { return UITableViewCell() }
-        let quiz = QuizProvider.quizes[indexPath.row]
+        let styledQuiz = StyledQuizProvider.styledQuizes[indexPath.row]
         
-        quizCell.configure(with: quiz.image, and: quiz.title)
+        quizCell.configure(with: styledQuiz)
         
         return quizCell
     }

@@ -29,7 +29,6 @@ class QuizTableViewCell: UITableViewCell {
         myLabel.translatesAutoresizingMaskIntoConstraints = false
         myLabel.numberOfLines = 1
         myLabel.font = .boldSystemFont(ofSize: 26)
-        myLabel.textColor = .white
         
         return myLabel
     }()
@@ -77,17 +76,13 @@ class QuizTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(labelConstraints)
     }
     
-    public func configure(with logo: UIImage?, and title: String?) {
+    public func configure(with styledQuiz: StyledQuiz) {
+        let quiz = styledQuiz.quiz
+        let style = styledQuiz.style
+        let logo = UIImage(named: quiz.image)
+        
         logoImageView.image = logo
-        quizTitleLabel.text = title
-    }
-    
-    public func configure(with logo: String?, and title: String?) {
-        if let logo {
-            let image = UIImage(named: logo)
-            logoImageView.image = image
-        }
-    
-        quizTitleLabel.text = title
+        quizTitleLabel.textColor = style.titleColor
+        quizTitleLabel.text = quiz.title
     }
 }
