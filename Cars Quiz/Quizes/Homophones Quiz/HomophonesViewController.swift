@@ -12,18 +12,17 @@ class HomophonesViewController: UIViewController {
     // MARK: - UI Components
     
         let containerView = UIView()
-        let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        print("HomophonesViewController viewDidLoad")
+        
+        view.backgroundColor = .systemBackground
+        
         title = "Homophones"
         
         setupUI()
@@ -32,22 +31,45 @@ class HomophonesViewController: UIViewController {
     // MARK: - Methods
 
     private func setupUI() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(containerView)
-
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
+        scrollViewSettings()
+        containerViewSettings()
+        
+    }
+    
+    func scrollViewSettings(){
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(scrollView)
+        
+        let scrollViewConstrains = [
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
+        ]
+        
+        NSLayoutConstraint.activate(scrollViewConstrains)
+        
+    }
+    
+    func containerViewSettings(){
+        
+        scrollView.addSubview(containerView)
+
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let containerViewConstrains = [
             containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-        ])
+        ]
+        
+        NSLayoutConstraint.activate(containerViewConstrains)
+        
     }
+    
 }
