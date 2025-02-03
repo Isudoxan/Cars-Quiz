@@ -160,6 +160,21 @@
             </objects>
             <point key="canvasLocation" x="-5881.679389312977" y="67.605633802816911"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="3fw-CS-iEq">
+            <objects>
+                <viewController id="ga2-DA-czq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jou-I3-w5E">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="fmw-aL-9ED"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cnU-wV-oxo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4860" y="68"/>
+        </scene>
         <!--Quiz Gallery View Controller-->
         <scene sceneID="tBU-p9-u0X">
             <objects>
@@ -205,7 +220,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYo-lp-PcU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7773" y="69"/>
+            <point key="canvasLocation" x="-7773" y="68"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="tintColor"/>

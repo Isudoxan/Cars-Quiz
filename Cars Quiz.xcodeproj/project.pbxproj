@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3D0F69712D4CE79000C4196B /* StyledQuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F69702D4CE79000C4196B /* StyledQuizProvider.swift */; };
 		3D0F69742D4CF24B00C4196B /* HomophonesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F69732D4CF24B00C4196B /* HomophonesViewController.swift */; };
+		3D0F69762D50DFD100C4196B /* HomophonesGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F69752D50DFD100C4196B /* HomophonesGameEngine.swift */; };
+		3D0F69782D5111E300C4196B /* HomophonesImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F69772D5111E300C4196B /* HomophonesImageProvider.swift */; };
+		3D0F697A2D51120E00C4196B /* HomophonesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F69792D51120E00C4196B /* HomophonesProvider.swift */; };
 		3D85BD792D4AA09900D2BC03 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D85BD782D4AA09900D2BC03 /* Helpers.swift */; };
 		3D913FDB2D4BEE9D0035F3DD /* QuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D913FDA2D4BEE990035F3DD /* QuizProvider.swift */; };
 		3D9F9F712D47FC68002FE4A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F9F652D47FC68002FE4A6 /* Assets.xcassets */; };
@@ -26,6 +29,9 @@
 /* Begin PBXFileReference section */
 		3D0F69702D4CE79000C4196B /* StyledQuizProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledQuizProvider.swift; sourceTree = "<group>"; };
 		3D0F69732D4CF24B00C4196B /* HomophonesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomophonesViewController.swift; sourceTree = "<group>"; };
+		3D0F69752D50DFD100C4196B /* HomophonesGameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomophonesGameEngine.swift; sourceTree = "<group>"; };
+		3D0F69772D5111E300C4196B /* HomophonesImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomophonesImageProvider.swift; sourceTree = "<group>"; };
+		3D0F69792D51120E00C4196B /* HomophonesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomophonesProvider.swift; sourceTree = "<group>"; };
 		3D85BD782D4AA09900D2BC03 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		3D913FDA2D4BEE990035F3DD /* QuizProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizProvider.swift; sourceTree = "<group>"; };
 		3D9D46612D401197000ABE2C /* Cars Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cars Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				3D0F69732D4CF24B00C4196B /* HomophonesViewController.swift */,
+				3D0F69752D50DFD100C4196B /* HomophonesGameEngine.swift */,
+				3D0F69772D5111E300C4196B /* HomophonesImageProvider.swift */,
+				3D0F69792D51120E00C4196B /* HomophonesProvider.swift */,
 			);
 			path = "Homophones Quiz";
 			sourceTree = "<group>";
@@ -216,8 +225,11 @@
 				3D9F9F802D4807A1002FE4A6 /* QuizTableViewCell.swift in Sources */,
 				3D913FDB2D4BEE9D0035F3DD /* QuizProvider.swift in Sources */,
 				3D9F9F752D47FC68002FE4A6 /* AppDelegate.swift in Sources */,
+				3D0F69782D5111E300C4196B /* HomophonesImageProvider.swift in Sources */,
 				3D9F9F762D47FC68002FE4A6 /* CarsGameEngine.swift in Sources */,
 				3D85BD792D4AA09900D2BC03 /* Helpers.swift in Sources */,
+				3D0F697A2D51120E00C4196B /* HomophonesProvider.swift in Sources */,
+				3D0F69762D50DFD100C4196B /* HomophonesGameEngine.swift in Sources */,
 				3D9F9F772D47FC68002FE4A6 /* CarsQuizViewController.swift in Sources */,
 				3D9F9F782D47FC68002FE4A6 /* NavigationController.swift in Sources */,
 				3D0F69712D4CE79000C4196B /* StyledQuizProvider.swift in Sources */,

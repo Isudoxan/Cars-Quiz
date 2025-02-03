@@ -37,7 +37,7 @@ class HomophonesViewController: UIViewController {
         
     }
     
-    func scrollViewSettings(){
+    private func scrollViewSettings(){
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -54,7 +54,7 @@ class HomophonesViewController: UIViewController {
         
     }
     
-    func containerViewSettings(){
+    private func containerViewSettings(){
         
         scrollView.addSubview(containerView)
 
