@@ -26,8 +26,6 @@ class Quiz {
 class QuizProvider {
     static let quizes = [
         Quiz(type: .carsHero, title: "Cars Hero 🚘", image: "CarsQuizLogo"),
-        Quiz(type: .homophonesHero, title: "Homophones Hero 🗣️", image: "HomophonesQuizLogo"),
-        Quiz(type: .carsHero, title: "Cars Hero 🚘", image: "CarsQuizLogo"),
         Quiz(type: .homophonesHero, title: "Homophones Hero 🗣️", image: "HomophonesQuizLogo")
     ]
 }

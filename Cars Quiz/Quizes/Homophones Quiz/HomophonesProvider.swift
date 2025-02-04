@@ -7,42 +7,110 @@
 
 import UIKit
 
-class HomophonesProvider{
-        
-    class Homophon {
-//      ua - means "Ukrainian"
-        let firstWord: String
-        let secondWord: String
-        let uaFirstWord: String
-        let uaSecondWord: String
-        let wordTranscription: String
-        let firstSentense: String
-        let secondSentense: String
-        
-        init(firstWord: String, secondWord: String, uaFirstWord: String, uaSecondWord: String, wordTranscription: String, firstSentense: String, secondSentense: String)
-        
-        {
-            self.firstWord = firstWord
-            self.secondWord = secondWord
-            self.uaFirstWord = uaFirstWord
-            self.uaSecondWord = uaSecondWord
-            self.wordTranscription = wordTranscription
-            self.firstSentense = firstSentense
-            self.secondSentense = secondSentense
-        }
-    }
+class HomophonesProvider {
     
-    var homophones: [Homophon] = [
-        Homophon(firstWord: "Write", secondWord: "Right", uaFirstWord: "Писати", uaSecondWord: "Правий", wordTranscription: "[rait]", firstSentense: "1. Turn ... at the crossroads.", secondSentense: "2. Please ... in black ink."),
-        Homophon(firstWord: "Root", secondWord: "Route", uaFirstWord: "Корінь", uaSecondWord: "Маршрут", wordTranscription: "[ru:t]", firstSentense: "1. I drive this ... every day.", secondSentense: "2. He took hold of the plant's ... and pulled."),
-        Homophon(firstWord: "Wine", secondWord: "Whine", uaFirstWord: "Вино", uaSecondWord: "Скиглити", wordTranscription: "[wain]", firstSentense: "1. Alice, if you keep ... i won't take you - do you understand?", secondSentense: "2. Let's have glass of ... with dinner."),
-        Homophon(firstWord: "Wait", secondWord: "Weight", uaFirstWord: "Чекати", uaSecondWord: "Вага", wordTranscription: "[weit]", firstSentense: "1. My ... reduces when i stop eating sugar.", secondSentense: "2. The children were hungry and could hardly ... for their father to come."),
-        Homophon(firstWord: "Weak", secondWord: "Week", uaFirstWord: "Слабкий", uaSecondWord: "Тиждень", wordTranscription: "[wi:k]", firstSentense: "1. 'You're too ... to fight him,' she said.", secondSentense: "2. We're usually too tired to go out much during the ... ."),
-        Homophon(firstWord: "Bawl", secondWord: "Ball", uaFirstWord: "Кричати", uaSecondWord: "М'яч", wordTranscription: "bo:l", firstSentense: "1. Don't ... out like that: i can hear you.", secondSentense: "2. Just try to concentrate on hitting the ... ."),
-        Homophon(firstWord: "Hole", secondWord: "Whole", uaFirstWord: "Дірка", uaSecondWord: "Весь, цілий", wordTranscription: "[hoʊl]", firstSentense: "1. I spent the ... day cleaning.", secondSentense: "2. My jumper's got a ... in it."),
-        Homophon(firstWord: "Hear", secondWord: "Here", uaFirstWord: "Чути", uaSecondWord: "Тут", wordTranscription: "[hir]", firstSentense: "1. You'll have to speak up, i can't ... you.", secondSentense: "2. London is only 50 miles from ... ."),
-        Homophon(firstWord: "Prey", secondWord: "Pray", uaFirstWord: "Здобич", uaSecondWord: "Молитися", wordTranscription: "[prei]", firstSentense: "1. Most snakes swallow their ... whole.", secondSentense: "2. Let us ... for the victims of this terrible disaster."),
-        Homophon(firstWord: "Chilly", secondWord: "Chilli", uaFirstWord: "Холодний", uaSecondWord: "Гострий перець", wordTranscription: "[tʃili]", firstSentense: "1. Beware the ... if you don't like spicy food.", secondSentense: "2. I felt a bit ... so i put on a jacket"),
+    static var homophones: [Homophon] = [
+        Homophon(
+            firstWordEN: "Write",
+            secondWordEN: "Right",
+            firstWordUA: "Писати",
+            secondWordUA: "Правий",
+            transcription: "[rait]",
+            firstSentence: "1. Turn ... at the crossroads.",
+            secondSentence: "2. Please ... in black ink.",
+            firstWordImageName: "WriteImage",
+            secondWordImageName: "RightImage"
+        ),
+        Homophon(
+            firstWordEN: "Root",
+            secondWordEN: "Route",
+            firstWordUA: "Корінь",
+            secondWordUA: "Маршрут",
+            transcription: "[ru:t]",
+            firstSentence: "1. I drive this ... every day.",
+            secondSentence: "2. He took hold of the plant's ... and pulled.",
+            firstWordImageName: "RootImage",
+            secondWordImageName: "RouteImage"),
+        Homophon(
+            firstWordEN: "Wine",
+            secondWordEN: "Whine",
+            firstWordUA: "Вино",
+            secondWordUA: "Скиглити",
+            transcription: "[wain]",
+            firstSentence: "1. Alice, if you keep ... i won't take you - do you understand?",
+            secondSentence: "2. Let's have glass of ... with dinner.",
+            firstWordImageName: "WineImage",
+            secondWordImageName: "WhineImage"),
+        Homophon(
+            firstWordEN: "Wait",
+            secondWordEN: "Weight",
+            firstWordUA: "Чекати",
+            secondWordUA: "Вага",
+            transcription: "[weit]",
+            firstSentence: "1. My ... reduces when i stop eating sugar.",
+            secondSentence: "2. The children were hungry and could hardly ... for their father to come.",
+            firstWordImageName: "WaitImage",
+            secondWordImageName: "WeightImage"),
+        Homophon(
+            firstWordEN: "Weak",
+            secondWordEN: "Week",
+            firstWordUA: "Слабкий",
+            secondWordUA: "Тиждень",
+            transcription: "[wi:k]",
+            firstSentence: "1. 'You're too ... to fight him,' she said.",
+            secondSentence: "2. We're usually too tired to go out much during the ... .",
+            firstWordImageName: "WeakImage",
+            secondWordImageName: "WeekImage"),
+        Homophon(
+            firstWordEN: "Bawl",
+            secondWordEN: "Ball",
+            firstWordUA: "Кричати",
+            secondWordUA: "М'яч",
+            transcription: "bo:l",
+            firstSentence: "1. Don't ... out like that: i can hear you.",
+            secondSentence: "2. Just try to concentrate on hitting the ... .",
+            firstWordImageName: "BawlImage",
+            secondWordImageName: "BallImage"),
+        Homophon(
+            firstWordEN: "Hole",
+            secondWordEN: "Whole",
+            firstWordUA: "Дірка",
+            secondWordUA: "Весь, цілий",
+            transcription: "[hoʊl]",
+            firstSentence: "1. I spent the ... day cleaning.",
+            secondSentence: "2. My jumper's got a ... in it.",
+            firstWordImageName: "HoleImage",
+            secondWordImageName: "WholeImage"),
+        Homophon(
+            firstWordEN: "Hear",
+            secondWordEN: "Here",
+            firstWordUA: "Чути",
+            secondWordUA: "Тут",
+            transcription: "[hir]",
+            firstSentence: "1. You'll have to speak up, i can't ... you.",
+            secondSentence: "2. London is only 50 miles from ... .",
+            firstWordImageName: "HearImage",
+            secondWordImageName: "HereImage"),
+        Homophon(
+            firstWordEN: "Prey",
+            secondWordEN: "Pray",
+            firstWordUA: "Здобич",
+            secondWordUA: "Молитися",
+            transcription: "[prei]",
+            firstSentence: "1. Most snakes swallow their ... whole.",
+            secondSentence: "2. Let us ... for the victims of this terrible disaster.",
+            firstWordImageName: "PreyImage",
+            secondWordImageName: "PrayImage"),
+        Homophon(
+            firstWordEN: "Chilly",
+            secondWordEN: "Chilli",
+            firstWordUA: "Холодний",
+            secondWordUA: "Гострий перець",
+            transcription: "[tʃili]",
+            firstSentence: "1. Beware the ... if you don't like spicy food.",
+            secondSentence: "2. I felt a bit ... so i put on a jacket",
+            firstWordImageName: "ChillyImage",
+            secondWordImageName: "ChilliImage")
     ]
     
 }

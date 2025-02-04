@@ -8,11 +8,19 @@
 import UIKit
 
 class HomophonesViewController: UIViewController {
-
+    
+    // MARK: - Properties
+    
+    var homophonesWithImages = {
+        let homophones = HomophonesProvider.homophones
+        let homophonesWithImages = HomophonesWithImagesProvider.createHomophonesWithImages(from: homophones)
+        return homophonesWithImages
+    }
+    
     // MARK: - UI Components
     
-        let containerView = UIView()
-        let scrollView = UIScrollView()
+    let containerView = UIView()
+    let scrollView = UIScrollView()
 
     // MARK: - Lifecycle
 
@@ -37,7 +45,7 @@ class HomophonesViewController: UIViewController {
         
     }
     
-    private func scrollViewSettings(){
+    private func scrollViewSettings() {
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
