@@ -12,8 +12,8 @@ class CarsQuizViewController: UIViewController {
     // MARK: - Properties
     
     var gameEngine = CarsGameEngine()
-    var cars: [CarsGameEngine.Car] { return gameEngine.cars }
-    var currentCar: CarsGameEngine.Car? { return gameEngine.currentCar }
+    var cars: [Car] { return gameEngine.cars }
+    var currentCar: Car? { return gameEngine.currentCar }
     
     // MARK: - UI Components
     

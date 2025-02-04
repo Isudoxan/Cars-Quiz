@@ -8,16 +8,6 @@
 import Foundation
 
 class CarsGameEngine {
-
-    class Car {
-        let name: String
-        let imageName: String
-        
-        init(name: String, imageName: String) {
-            self.name = name
-            self.imageName = imageName
-        }
-    }
     
     enum GameResult {
         case correct
