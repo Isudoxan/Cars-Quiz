@@ -11,7 +11,7 @@ class HomophonesViewController: UIViewController {
     
     // MARK: - Properties
     
-    var homophonesWithImages = {
+    var homophonesWithImages: [HomophoneWithImage] {
         let homophones = HomophonesProvider.homophones
         let homophonesWithImages = HomophonesWithImagesProvider.createHomophonesWithImages(from: homophones)
         return homophonesWithImages
@@ -19,8 +19,22 @@ class HomophonesViewController: UIViewController {
     
     // MARK: - UI Components
     
-    let containerView = UIView()
-    let cardView = Card()
+    private let containerView: UIView = {
+        let containerView = UIView()
+        
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = .systemBackground
+        
+        return containerView
+    }()
+    
+    let cardView: HomophoneCardView = {
+        let cardView = HomophoneCardView()
+        
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return cardView
+    }()
     
     // MARK: - Lifecycle
 
@@ -31,24 +45,18 @@ class HomophonesViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        setupUI()
+        setupSubviews()
+        setupConstraints()
     }
 
     // MARK: - Methods
-
-    private func setupUI() {
-        
-        containerViewSettings()
-        cardViewSettings()
-        
+    
+    private func setupSubviews() {
+        view.addSubview(containerView)
+        containerView.addSubview(cardView)
     }
     
-    private func containerViewSettings(){
-        
-        view.addSubview(containerView)
-
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .systemBackground
+    private func setupConstraints() {
         let containerViewConstrains = [
             containerView.topAnchor.constraint(equalTo: view.topAnchor),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -56,21 +64,20 @@ class HomophonesViewController: UIViewController {
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ]
         
-        NSLayoutConstraint.activate(containerViewConstrains)
-        
-    }
-    
-    private func cardViewSettings(){
-        cardView.cardView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(cardView.cardView)
         let cardViewConstrains = [
-            cardView.cardView.topAnchor.constraint(equalTo:containerView.topAnchor , constant: 100),
-            cardView.cardView.bottomAnchor.constraint(equalTo:containerView.bottomAnchor , constant: -200),
-            cardView.cardView.trailingAnchor.constraint(equalTo:containerView.trailingAnchor , constant: -15),
-            cardView.cardView.leadingAnchor.constraint(equalTo:containerView.leadingAnchor , constant: 15)
+            cardView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 100),
+            cardView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -200),
+            cardView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15),
+            cardView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15)
         ]
-        
+
+        NSLayoutConstraint.activate(containerViewConstrains)
         NSLayoutConstraint.activate(cardViewConstrains)
     }
     
+    func configure() {
+        guard let homophone = homophonesWithImages.first else { return }
+        
+        cardView.configure(with: homophone)
+    }
 }
