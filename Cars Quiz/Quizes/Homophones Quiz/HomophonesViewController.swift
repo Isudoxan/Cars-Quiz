@@ -20,6 +20,7 @@ class HomophonesViewController: UIViewController {
     var firstSentence: String = ""
     var secondSentence: String = ""
     var transcription: String = ""
+    var cardView = Card()
     
     // MARK: - UI Components
     
@@ -34,8 +35,6 @@ class HomophonesViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        title = "Homophones"
-        
         setupUI()
     }
 
@@ -44,6 +43,7 @@ class HomophonesViewController: UIViewController {
     private func setupUI() {
         
         containerViewSettings()
+        cardViewSettings()
         
     }
     
@@ -52,7 +52,7 @@ class HomophonesViewController: UIViewController {
         view.addSubview(containerView)
 
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .cyan
+        containerView.backgroundColor = .systemBackground
         let containerViewConstrains = [
             containerView.topAnchor.constraint(equalTo: view.topAnchor),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -62,6 +62,19 @@ class HomophonesViewController: UIViewController {
         
         NSLayoutConstraint.activate(containerViewConstrains)
         
+    }
+    
+    private func cardViewSettings(){
+        cardView.cardView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(cardView.cardView)
+        let cardViewConstrains = [
+            cardView.cardView.topAnchor.constraint(equalTo:containerView.topAnchor , constant: 100),
+            cardView.cardView.bottomAnchor.constraint(equalTo:containerView.bottomAnchor , constant: -200),
+            cardView.cardView.trailingAnchor.constraint(equalTo:containerView.trailingAnchor , constant: -15),
+            cardView.cardView.leadingAnchor.constraint(equalTo:containerView.leadingAnchor , constant: 15)
+        ]
+        
+        NSLayoutConstraint.activate(cardViewConstrains)
     }
     
 }
