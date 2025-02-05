@@ -13,19 +13,19 @@ class Homophon {
     let firstWordUA: String
     let secondWordUA: String
     let wordTranscription: String
-    let firstSentense: String
-    let secondSentense: String
+    let firstSentence: String
+    let secondSentence: String
     let firstWordImageName: String
     let secondWordImageName: String
     
-    init(firstWordEN: String, secondWordEN: String, firstWordUA: String, secondWordUA: String,             transcription: String, firstSentence: String, secondSentence: String, firstWordImageName: String, secondWordImageName: String) {
+    init(firstWordEN: String, secondWordEN: String, firstWordUA: String, secondWordUA: String, transcription: String, firstSentence: String, secondSentence: String, firstWordImageName: String, secondWordImageName: String) {
         self.firstWordEN = firstWordEN
         self.secondWordEN = secondWordEN
         self.firstWordUA = firstWordUA
         self.secondWordUA = secondWordUA
-        self.wordTranscription =             transcription
-        self.firstSentense = firstSentence
-        self.secondSentense = secondSentence
+        self.wordTranscription = transcription
+        self.firstSentence = firstSentence
+        self.secondSentence = secondSentence
         self.firstWordImageName = firstWordImageName
         self.secondWordImageName = secondWordImageName
     }

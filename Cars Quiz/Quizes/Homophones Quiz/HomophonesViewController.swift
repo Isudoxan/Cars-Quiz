@@ -11,7 +11,7 @@ class HomophonesViewController: UIViewController {
     
     // MARK: - Properties
     
-    var homophonesWithImages = {
+    var homophonesWithImages: [HomophoneWithImage] {
         let homophones = HomophonesProvider.homophones
         let homophonesWithImages = HomophonesWithImagesProvider.createHomophonesWithImages(from: homophones)
         return homophonesWithImages
@@ -19,9 +19,23 @@ class HomophonesViewController: UIViewController {
     
     // MARK: - UI Components
     
-    let containerView = UIView()
-    let scrollView = UIScrollView()
-
+    private let containerView: UIView = {
+        let containerView = UIView()
+        
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = .systemBackground
+        
+        return containerView
+    }()
+    
+    let cardView: HomophoneCardView = {
+        let cardView = HomophoneCardView()
+        
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return cardView
+    }()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -31,53 +45,39 @@ class HomophonesViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        title = "Homophones"
-        
-        setupUI()
+        setupSubviews()
+        setupConstraints()
+        configure()
     }
 
     // MARK: - Methods
-
-    private func setupUI() {
-        
-        scrollViewSettings()
-        containerViewSettings()
-        
+    
+    private func setupSubviews() {
+        view.addSubview(containerView)
+        containerView.addSubview(cardView)
     }
     
-    private func scrollViewSettings() {
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(scrollView)
-        
-        let scrollViewConstrains = [
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ]
-        
-        NSLayoutConstraint.activate(scrollViewConstrains)
-        
-    }
-    
-    private func containerViewSettings(){
-        
-        scrollView.addSubview(containerView)
-
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        
+    private func setupConstraints() {
         let containerViewConstrains = [
-            containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ]
         
+        let cardViewConstrains = [
+            cardView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            cardView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -150),
+            cardView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15),
+            cardView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15)
+        ]
+
         NSLayoutConstraint.activate(containerViewConstrains)
-        
+        NSLayoutConstraint.activate(cardViewConstrains)
     }
     
+    func configure() {
+        let homophone = homophonesWithImages[4]
+        cardView.configure(with: homophone)
+    }
 }
