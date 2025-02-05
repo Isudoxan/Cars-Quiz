@@ -47,6 +47,7 @@ class HomophonesViewController: UIViewController {
         
         setupSubviews()
         setupConstraints()
+        configure()
     }
 
     // MARK: - Methods
@@ -58,15 +59,15 @@ class HomophonesViewController: UIViewController {
     
     private func setupConstraints() {
         let containerViewConstrains = [
-            containerView.topAnchor.constraint(equalTo: view.topAnchor),
+            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ]
         
         let cardViewConstrains = [
-            cardView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 100),
-            cardView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -200),
+            cardView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            cardView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -150),
             cardView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15),
             cardView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15)
         ]
@@ -76,8 +77,7 @@ class HomophonesViewController: UIViewController {
     }
     
     func configure() {
-        guard let homophone = homophonesWithImages.first else { return }
-        
+        let homophone = homophonesWithImages[4]
         cardView.configure(with: homophone)
     }
 }

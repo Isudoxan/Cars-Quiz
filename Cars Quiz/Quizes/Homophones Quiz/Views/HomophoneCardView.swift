@@ -42,7 +42,7 @@ class HomophoneCardView: UIView {
         transcriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         transcriptionLabel.textColor = .black
         transcriptionLabel.textAlignment = .center
-        transcriptionLabel.font = .boldSystemFont(ofSize: 16)
+        transcriptionLabel.font = .boldSystemFont(ofSize: 18)
         
         return transcriptionLabel
     }()
@@ -97,18 +97,18 @@ class HomophoneCardView: UIView {
         ]
         
         let firstWordImageViewConstraints = [
-            firstWordImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            firstWordImageView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 16)
+            firstWordImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            firstWordImageView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 14)
         ]
         
         let secondWordImageViewConstraints = [
-            secondWordImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            secondWordImageView.topAnchor.constraint(equalTo: firstWordImageView.bottomAnchor, constant: 48)
+            secondWordImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
+            secondWordImageView.topAnchor.constraint(equalTo: firstWordImageView.bottomAnchor, constant: 70)
         ]
         
         let transcriptionLabelConstraints = [
             transcriptionLabel.leadingAnchor.constraint(greaterThanOrEqualTo: firstWordImageView.trailingAnchor, constant: 16),
-            transcriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            transcriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
             transcriptionLabel.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 36)
         ]
         

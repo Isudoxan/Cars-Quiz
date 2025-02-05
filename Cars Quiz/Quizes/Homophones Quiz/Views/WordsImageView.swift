@@ -49,8 +49,6 @@ class WordImageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .green
-        
         setupSubviews()
         setupConstraints()
     }
