@@ -19,6 +19,9 @@ class WordImageView: UIView {
         wordENLabel.textColor = .blue
         wordENLabel.font = .boldSystemFont(ofSize: 35)
         wordENLabel.numberOfLines = 1
+        wordENLabel.adjustsFontSizeToFitWidth = true
+        wordENLabel.minimumScaleFactor = 0.5
+        wordENLabel.lineBreakMode = .byClipping
         
         return wordENLabel
     }()
@@ -31,7 +34,10 @@ class WordImageView: UIView {
         wordUALabel.textColor = .black
         wordUALabel.font = .systemFont(ofSize: 15)
         wordUALabel.numberOfLines = 1
-        
+        wordUALabel.adjustsFontSizeToFitWidth = true
+        wordUALabel.minimumScaleFactor = 0.5
+        wordUALabel.lineBreakMode = .byClipping
+    
         return wordUALabel
     }()
     

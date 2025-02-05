@@ -13,7 +13,6 @@ class HomophoneCardView: UIView {
     
     private let topView: UIView = {
         let topView = UIView()
-        
         topView.translatesAutoresizingMaskIntoConstraints = false
         topView.backgroundColor = .blue
         
@@ -22,7 +21,6 @@ class HomophoneCardView: UIView {
     
     private let firstWordImageView: WordImageView = {
         let firstWordImageView = WordImageView()
-        
         firstWordImageView.translatesAutoresizingMaskIntoConstraints = false
         
         return firstWordImageView
@@ -30,7 +28,6 @@ class HomophoneCardView: UIView {
     
     private let secondWordImageView: WordImageView = {
         let secondWordImageView = WordImageView()
-        
         secondWordImageView.translatesAutoresizingMaskIntoConstraints = false
         
         return secondWordImageView
@@ -38,7 +35,6 @@ class HomophoneCardView: UIView {
     
     private let transcriptionLabel: UILabel = {
         let transcriptionLabel = UILabel()
-        
         transcriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         transcriptionLabel.textColor = .black
         transcriptionLabel.textAlignment = .center
@@ -49,7 +45,6 @@ class HomophoneCardView: UIView {
     
     private let bottomView: UIView = {
         let bottomView = UIView()
-        
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         bottomView.backgroundColor = .blue
         
@@ -93,7 +88,7 @@ class HomophoneCardView: UIView {
             topView.leadingAnchor.constraint(equalTo: leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: trailingAnchor),
             topView.topAnchor.constraint(equalTo: topAnchor),
-            topView.heightAnchor.constraint(equalToConstant: 50)
+            topView.heightAnchor.constraint(equalToConstant: 55)
         ]
         
         let firstWordImageViewConstraints = [
@@ -116,7 +111,7 @@ class HomophoneCardView: UIView {
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            bottomView.heightAnchor.constraint(equalToConstant: 50)
+            bottomView.heightAnchor.constraint(equalToConstant: 55)
         ]
         
         NSLayoutConstraint.activate(topViewConstraints)
