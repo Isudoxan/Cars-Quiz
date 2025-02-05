@@ -69,7 +69,7 @@ class HomophonesProvider {
             transcription: "bo:l",
             firstSentence: "1. Don't ... out like that: i can hear you.",
             secondSentence: "2. Just try to concentrate on hitting the ... .",
-            firstWordImageName: "BawlImage",
+            firstWordImageName: "BowlImage",
             secondWordImageName: "BallImage"),
         Homophon(
             firstWordEN: "Hole",
