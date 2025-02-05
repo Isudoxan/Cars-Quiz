@@ -22,10 +22,12 @@ class WordImageView {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         wordENLAbel.translatesAutoresizingMaskIntoConstraints = false
+        wordENLAbel.textAlignment = .center
         wordENLAbel.textColor = .blue
         wordENLAbel.font = .boldSystemFont(ofSize: 20)
         
         wordUALAbel.translatesAutoresizingMaskIntoConstraints = false
+        wordUALAbel.textAlignment = .center
         wordUALAbel.textColor = .black
         wordUALAbel.font = .systemFont(ofSize: 15)
         
@@ -34,7 +36,6 @@ class WordImageView {
         view.addSubview(wordENLAbel)
         view.addSubview(wordUALAbel)
         view.addSubview(wordImage)
-        view.backgroundColor = .green
     }
     
     private func setupConstraints() {

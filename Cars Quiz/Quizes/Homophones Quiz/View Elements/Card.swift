@@ -20,25 +20,25 @@ class Card {
     // MARK: - Init
     
     init() {
-        setupElements()
-        setupfirstWordViewConstraints()
-        setupsecondWordViewConstraints()
-        setupTopAndBottomView()
-        setupLabel()
+        cardViewSettings()
+        setupfirstWordViewSettings()
+        setupsecondWordViewSettings()
+        setupTopAndBottomViewSettings()
+        setupTranscriptionLabelSettings()
     }
     
     // MARK: - Methods
     
-    private func setupElements() {
+    private func cardViewSettings() {
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.backgroundColor = .systemBackground
+        cardView.backgroundColor = .white
         cardView.layer.shadowColor = UIColor.black.cgColor
         cardView.layer.shadowOpacity = 0.3
         cardView.layer.shadowOffset = CGSize(width: 3, height: 3)
         cardView.layer.shadowRadius = 5
     }
 
-    private func setupfirstWordViewConstraints(){
+    private func setupfirstWordViewSettings(){
         let firstWordView = firstWordImageView.view
         cardView.addSubview(firstWordView)
         let firstWordViewConstraints = [
@@ -50,7 +50,7 @@ class Card {
         NSLayoutConstraint.activate(firstWordViewConstraints)
     }
     
-    private func setupsecondWordViewConstraints(){
+    private func setupsecondWordViewSettings(){
         let secondWordView = secondWordImageView.view
         cardView.addSubview(secondWordView)
         let secondWordViewConstraints = [
@@ -62,7 +62,7 @@ class Card {
         NSLayoutConstraint.activate(secondWordViewConstraints)
     }
     
-    private func setupTopAndBottomView(){
+    private func setupTopAndBottomViewSettings(){
         topView.translatesAutoresizingMaskIntoConstraints = false
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         topView.backgroundColor = .blue
@@ -88,7 +88,7 @@ class Card {
         NSLayoutConstraint.activate(bottomViewConstraints)
     }
     
-    private func setupLabel(){
+    private func setupTranscriptionLabelSettings(){
         transcription.text = "[wi:k]"
         transcription.translatesAutoresizingMaskIntoConstraints = false
         transcription.textColor = .black

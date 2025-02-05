@@ -16,7 +16,6 @@
 		3D0F697E2D513CAC00C4196B /* Homophone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F697D2D513CA900C4196B /* Homophone.swift */; };
 		3D0F69862D513FA300C4196B /* HomophoneWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F69852D513FA000C4196B /* HomophoneWithImage.swift */; };
 		3D0F698A2D5227C300C4196B /* WordsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F69892D5227C300C4196B /* WordsImageView.swift */; };
-		3D0F698C2D523A0200C4196B /* Top&Bottom view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F698B2D523A0200C4196B /* Top&Bottom view.swift */; };
 		3D0F698E2D526DC000C4196B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F698D2D526DC000C4196B /* Card.swift */; };
 		3D85BD792D4AA09900D2BC03 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D85BD782D4AA09900D2BC03 /* Helpers.swift */; };
 		3D913FDB2D4BEE9D0035F3DD /* QuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D913FDA2D4BEE990035F3DD /* QuizProvider.swift */; };
@@ -42,7 +41,6 @@
 		3D0F697D2D513CA900C4196B /* Homophone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homophone.swift; sourceTree = "<group>"; };
 		3D0F69852D513FA000C4196B /* HomophoneWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomophoneWithImage.swift; sourceTree = "<group>"; };
 		3D0F69892D5227C300C4196B /* WordsImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsImageView.swift; sourceTree = "<group>"; };
-		3D0F698B2D523A0200C4196B /* Top&Bottom view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Top&Bottom view.swift"; sourceTree = "<group>"; };
 		3D0F698D2D526DC000C4196B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		3D85BD782D4AA09900D2BC03 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		3D913FDA2D4BEE990035F3DD /* QuizProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizProvider.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			children = (
 				3D0F698D2D526DC000C4196B /* Card.swift */,
 				3D0F69892D5227C300C4196B /* WordsImageView.swift */,
-				3D0F698B2D523A0200C4196B /* Top&Bottom view.swift */,
 			);
 			path = "View Elements";
 			sourceTree = "<group>";
@@ -266,7 +263,6 @@
 				3D9F9F792D47FC68002FE4A6 /* QuizGalleryViewController.swift in Sources */,
 				3D9F9F7A2D47FC68002FE4A6 /* SceneDelegate.swift in Sources */,
 				3D0F69742D4CF24B00C4196B /* HomophonesViewController.swift in Sources */,
-				3D0F698C2D523A0200C4196B /* Top&Bottom view.swift in Sources */,
 				3D0F69862D513FA300C4196B /* HomophoneWithImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

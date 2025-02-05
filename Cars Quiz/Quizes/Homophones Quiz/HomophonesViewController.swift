@@ -17,15 +17,11 @@ class HomophonesViewController: UIViewController {
         return homophonesWithImages
     }
     
-    var firstSentence: String = ""
-    var secondSentence: String = ""
-    var transcription: String = ""
-    var cardView = Card()
-    
     // MARK: - UI Components
     
     let containerView = UIView()
-
+    let cardView = Card()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
