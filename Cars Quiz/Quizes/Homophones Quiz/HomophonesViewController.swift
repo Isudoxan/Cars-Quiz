@@ -2,7 +2,7 @@
 //  HomophonesViewController.swift
 //  Cars Quiz
 //
-//  Created by Danylo Liubyi on 03.02.2025.
+//  Created by Danylo Liubyi on 31.01.2025.
 //
 
 import UIKit
@@ -12,12 +12,6 @@ class HomophonesViewController: UIViewController {
     // MARK: - Properties
     
     var homophonesGameEngine = HomophonesGameEngine(homophones: HomophonesWithImagesProvider.createHomophonesWithImages(from: HomophonesProvider.homophones))
-    
-    var homophonesWithImages: [HomophoneWithImage] {
-        let homophones = HomophonesProvider.homophones
-        let homophonesWithImages = HomophonesWithImagesProvider.createHomophonesWithImages(from: homophones)
-        return homophonesWithImages
-    }
     
     // MARK: - UI Components
     
@@ -132,15 +126,21 @@ class HomophonesViewController: UIViewController {
     func configure() {
         let homophone = homophonesGameEngine.currentHomophone
         cardView.configure(with: homophone)
+        displayHomophone()
     }
         
     @objc func previousTapped() {
-        homophonesGameEngine.showPreviousHomophone()
-        configure()
+        homophonesGameEngine.previousHomophone()
+        displayHomophone()
     }
     
     @objc func nextTapped() {
-        homophonesGameEngine.showNextHomophone()
-        configure()
+        homophonesGameEngine.nextHomophone()
+        displayHomophone()
+    }
+    
+    func displayHomophone() {
+        let homophone = homophonesGameEngine.currentHomophone
+        cardView.configure(with: homophone)
     }
 }

@@ -9,6 +9,10 @@ import UIKit
 
 class WordImageView: UIView {
     
+    // MARK: - Properties
+    
+    private var widthConstraint: NSLayoutConstraint?
+    
     // MARK: - UI Components
     
     let wordENLabel: UILabel = {
@@ -19,9 +23,6 @@ class WordImageView: UIView {
         wordENLabel.textColor = .blue
         wordENLabel.font = .boldSystemFont(ofSize: 35)
         wordENLabel.numberOfLines = 1
-        wordENLabel.adjustsFontSizeToFitWidth = true
-        wordENLabel.minimumScaleFactor = 0.5
-        wordENLabel.lineBreakMode = .byClipping
         
         return wordENLabel
     }()
@@ -34,9 +35,6 @@ class WordImageView: UIView {
         wordUALabel.textColor = .black
         wordUALabel.font = .systemFont(ofSize: 15)
         wordUALabel.numberOfLines = 1
-        wordUALabel.adjustsFontSizeToFitWidth = true
-        wordUALabel.minimumScaleFactor = 0.5
-        wordUALabel.lineBreakMode = .byClipping
     
         return wordUALabel
     }()
@@ -84,23 +82,33 @@ class WordImageView: UIView {
             wordUALabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ]
         
-        let wordImageViewConstrains = [
+        let wordImageViewConstraints = [
             wordImageView.topAnchor.constraint(equalTo: wordUALabel.bottomAnchor, constant: 5),
-            wordImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            wordImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            wordImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             wordImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             wordImageView.widthAnchor.constraint(equalToConstant: 100),
             wordImageView.heightAnchor.constraint(equalToConstant: 100)
         ]
-        
+
         NSLayoutConstraint.activate(wordENLabelConstraints)
         NSLayoutConstraint.activate(wordUALabelConstraints)
-        NSLayoutConstraint.activate(wordImageViewConstrains)
+        NSLayoutConstraint.activate(wordImageViewConstraints)
     }
     
     func configure(wordEN: String, wordUA: String, image: UIImage?) {
         wordENLabel.text = wordEN
         wordUALabel.text = wordUA
         wordImageView.image = image
+
+        updateWidth()
+    }
+
+    private func updateWidth() {
+        let maxWidth = max(wordENLabel.intrinsicContentSize.width, wordUALabel.intrinsicContentSize.width) + 20
+
+        widthConstraint?.isActive = false
+
+        widthConstraint = widthAnchor.constraint(equalToConstant: maxWidth)
+        widthConstraint?.isActive = true
     }
 }

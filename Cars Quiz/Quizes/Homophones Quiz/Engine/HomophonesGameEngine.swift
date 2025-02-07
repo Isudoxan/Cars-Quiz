@@ -26,13 +26,13 @@ class HomophonesGameEngine {
     
     // MARK: - Methods
     
-    func showNextHomophone() {
+    func nextHomophone() {
         if currentHomophoneIndex < homophonesList.count - 1 {
             currentHomophoneIndex += 1
         }
     }
     
-    func showPreviousHomophone() {
+    func previousHomophone() {
         if currentHomophoneIndex > 0 {
             currentHomophoneIndex -= 1
         }
