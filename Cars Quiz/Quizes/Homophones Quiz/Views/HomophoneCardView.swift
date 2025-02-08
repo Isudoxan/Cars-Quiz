@@ -93,12 +93,14 @@ class HomophoneCardView: UIView {
         
         let firstWordImageViewConstraints = [
             firstWordImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            firstWordImageView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -150),
             firstWordImageView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 14)
         ]
-        
+
         let secondWordImageViewConstraints = [
             secondWordImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
-            secondWordImageView.topAnchor.constraint(equalTo: firstWordImageView.bottomAnchor, constant: 70)
+            secondWordImageView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 150),
+            secondWordImageView.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: -14)
         ]
         
         let transcriptionLabelConstraints = [

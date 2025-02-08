@@ -2,7 +2,7 @@
 //  HomophonesViewController.swift
 //  Cars Quiz
 //
-//  Created by Danylo Liubyi on 03.02.2025.
+//  Created by Danylo Liubyi on 31.01.2025.
 //
 
 import UIKit
@@ -12,12 +12,6 @@ class HomophonesViewController: UIViewController {
     // MARK: - Properties
     
     var homophonesGameEngine = HomophonesGameEngine(homophones: HomophonesWithImagesProvider.createHomophonesWithImages(from: HomophonesProvider.homophones))
-    
-    var homophonesWithImages: [HomophoneWithImage] {
-        let homophones = HomophonesProvider.homophones
-        let homophonesWithImages = HomophonesWithImagesProvider.createHomophonesWithImages(from: homophones)
-        return homophonesWithImages
-    }
     
     // MARK: - UI Components
     
@@ -37,27 +31,31 @@ class HomophonesViewController: UIViewController {
     }()
     
     private lazy var previousButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("←", for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 30)
-        button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(previousTapped), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        return button
+        let previousButton = UIButton()
+        
+        previousButton.translatesAutoresizingMaskIntoConstraints = false
+        previousButton.setTitle("←", for: .normal)
+        previousButton.titleLabel?.font = .boldSystemFont(ofSize: 30)
+        previousButton.setTitleColor(.black, for: .normal)
+        previousButton.addTarget(self, action: #selector(previousButtonTap), for: .touchUpInside)
+        previousButton.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+        previousButton.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        
+        return previousButton
     }()
 
     private lazy var nextButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("→", for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 30)
-        button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        return button
+        let nextButton = UIButton()
+        
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.setTitle("→", for: .normal)
+        nextButton.titleLabel?.font = .boldSystemFont(ofSize: 30)
+        nextButton.setTitleColor(.black, for: .normal)
+        nextButton.addTarget(self, action: #selector(nextButtonTap), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+        nextButton.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        
+        return nextButton
     }()
 
     @objc func buttonTouchDown(_ sender: UIButton) {
@@ -71,6 +69,7 @@ class HomophonesViewController: UIViewController {
             sender.transform = CGAffineTransform.identity
         })
     }
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -132,15 +131,21 @@ class HomophonesViewController: UIViewController {
     func configure() {
         let homophone = homophonesGameEngine.currentHomophone
         cardView.configure(with: homophone)
-    }
-        
-    @objc func previousTapped() {
-        homophonesGameEngine.showPreviousHomophone()
-        configure()
+        displayHomophone()
     }
     
-    @objc func nextTapped() {
-        homophonesGameEngine.showNextHomophone()
-        configure()
+    func displayHomophone() {
+        let homophone = homophonesGameEngine.currentHomophone
+        cardView.configure(with: homophone)
+    }
+    
+    @objc func previousButtonTap() {
+        homophonesGameEngine.previousHomophone()
+        displayHomophone()
+    }
+    
+    @objc func nextButtonTap() {
+        homophonesGameEngine.nextHomophone()
+        displayHomophone()
     }
 }
