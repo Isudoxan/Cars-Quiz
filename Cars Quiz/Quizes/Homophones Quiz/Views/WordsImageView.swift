@@ -9,10 +9,6 @@ import UIKit
 
 class WordImageView: UIView {
     
-    // MARK: - Properties
-    
-    private var widthConstraint: NSLayoutConstraint?
-    
     // MARK: - UI Components
     
     let wordENLabel: UILabel = {
@@ -22,7 +18,7 @@ class WordImageView: UIView {
         wordENLabel.textAlignment = .center
         wordENLabel.textColor = .blue
         wordENLabel.font = .boldSystemFont(ofSize: 35)
-        wordENLabel.numberOfLines = 1
+        wordENLabel.numberOfLines = 0
         
         return wordENLabel
     }()
@@ -34,7 +30,7 @@ class WordImageView: UIView {
         wordUALabel.textAlignment = .center
         wordUALabel.textColor = .black
         wordUALabel.font = .systemFont(ofSize: 15)
-        wordUALabel.numberOfLines = 1
+        wordUALabel.numberOfLines = 0
     
         return wordUALabel
     }()
@@ -99,16 +95,5 @@ class WordImageView: UIView {
         wordENLabel.text = wordEN
         wordUALabel.text = wordUA
         wordImageView.image = image
-
-        updateWidth()
-    }
-
-    private func updateWidth() {
-        let maxWidth = max(wordENLabel.intrinsicContentSize.width, wordUALabel.intrinsicContentSize.width) + 20
-
-        widthConstraint?.isActive = false
-
-        widthConstraint = widthAnchor.constraint(equalToConstant: maxWidth)
-        widthConstraint?.isActive = true
     }
 }
