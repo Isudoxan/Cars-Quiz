@@ -11,7 +11,8 @@ class HomophonesViewController: UIViewController {
     
     // MARK: - Properties
     
-    var homophonesGameEngine = HomophonesGameEngine(homophones: HomophonesWithImagesProvider.createHomophonesWithImages(from: HomophonesProvider.homophones))
+    private let storageManager = HomophonesStorageManager()
+    private var homophonesGameEngine: HomophonesGameEngine?
     
     // MARK: - UI Components
     
@@ -19,20 +20,17 @@ class HomophonesViewController: UIViewController {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = .systemBackground
-        
         return containerView
     }()
     
     let cardView: HomophoneCardView = {
         let cardView = HomophoneCardView()
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        
         return cardView
     }()
     
     private lazy var previousButton: UIButton = {
         let previousButton = UIButton()
-        
         previousButton.translatesAutoresizingMaskIntoConstraints = false
         previousButton.setTitle("←", for: .normal)
         previousButton.titleLabel?.font = .boldSystemFont(ofSize: 30)
@@ -40,13 +38,11 @@ class HomophonesViewController: UIViewController {
         previousButton.addTarget(self, action: #selector(previousButtonTap), for: .touchUpInside)
         previousButton.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
         previousButton.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
         return previousButton
     }()
 
     private lazy var nextButton: UIButton = {
         let nextButton = UIButton()
-        
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.setTitle("→", for: .normal)
         nextButton.titleLabel?.font = .boldSystemFont(ofSize: 30)
@@ -54,7 +50,6 @@ class HomophonesViewController: UIViewController {
         nextButton.addTarget(self, action: #selector(nextButtonTap), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
         nextButton.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
         return nextButton
     }()
 
@@ -71,7 +66,7 @@ class HomophonesViewController: UIViewController {
     }
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,6 +74,7 @@ class HomophonesViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
+        loadGameEngineAndHomophones()
         setupSubviews()
         setupConstraints()
         configure()
@@ -129,23 +125,34 @@ class HomophonesViewController: UIViewController {
     }
     
     func configure() {
-        let homophone = homophonesGameEngine.currentHomophone
-        cardView.configure(with: homophone)
         displayHomophone()
     }
     
     func displayHomophone() {
-        let homophone = homophonesGameEngine.currentHomophone
+        guard let gameEngine = homophonesGameEngine else { return }
+        let homophone = gameEngine.currentHomophone
         cardView.configure(with: homophone)
     }
-    
+
     @objc func previousButtonTap() {
-        homophonesGameEngine.previousHomophone()
+        guard let gameEngine = homophonesGameEngine else { return }
+        gameEngine.previousHomophone()
+        storageManager.saveCurrentIndex(gameEngine.getCurrentIndex())
+        displayHomophone()
+    }
+
+    @objc func nextButtonTap() {
+        guard let gameEngine = homophonesGameEngine else { return }
+        gameEngine.nextHomophone()
+        storageManager.saveCurrentIndex(gameEngine.getCurrentIndex())
         displayHomophone()
     }
     
-    @objc func nextButtonTap() {
-        homophonesGameEngine.nextHomophone()
-        displayHomophone()
+    private func loadGameEngineAndHomophones(){
+        let savedIndex = storageManager.loadCurrentIndex()
+        
+        let homophonesList = HomophonesWithImagesProvider.createHomophonesWithImages(from: HomophonesProvider.homophones)
+        
+        homophonesGameEngine = HomophonesGameEngine(homophones: homophonesList, startIndex: savedIndex)
     }
 }

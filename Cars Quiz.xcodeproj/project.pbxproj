@@ -29,6 +29,7 @@
 		3D9F9F792D47FC68002FE4A6 /* QuizGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F6E2D47FC68002FE4A6 /* QuizGalleryViewController.swift */; };
 		3D9F9F7A2D47FC68002FE4A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F6F2D47FC68002FE4A6 /* SceneDelegate.swift */; };
 		3D9F9F802D4807A1002FE4A6 /* QuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F9F7F2D4807A1002FE4A6 /* QuizTableViewCell.swift */; };
+		3DEA05D92D59156C0002AC2B /* HomophonesStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEA05D82D59156C0002AC2B /* HomophonesStorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		3D9F9F6E2D47FC68002FE4A6 /* QuizGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGalleryViewController.swift; sourceTree = "<group>"; };
 		3D9F9F6F2D47FC68002FE4A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3D9F9F7F2D4807A1002FE4A6 /* QuizTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTableViewCell.swift; sourceTree = "<group>"; };
+		3DEA05D82D59156C0002AC2B /* HomophonesStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomophonesStorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				3D0F697D2D513CA900C4196B /* Homophone.swift */,
 				3D0F69852D513FA000C4196B /* HomophoneWithImage.swift */,
+				3DEA05D82D59156C0002AC2B /* HomophonesStorageManager.swift */,
 				3D0F69752D50DFD100C4196B /* HomophonesGameEngine.swift */,
 			);
 			path = Engine;
@@ -258,6 +261,7 @@
 				3D0F698A2D5227C300C4196B /* WordsImageView.swift in Sources */,
 				3D0F697C2D513C9200C4196B /* Car.swift in Sources */,
 				3D9F9F752D47FC68002FE4A6 /* AppDelegate.swift in Sources */,
+				3DEA05D92D59156C0002AC2B /* HomophonesStorageManager.swift in Sources */,
 				3D0F69782D5111E300C4196B /* HomophonesWithImagesProvider.swift in Sources */,
 				3D9F9F762D47FC68002FE4A6 /* CarsGameEngine.swift in Sources */,
 				3D0F698E2D526DC000C4196B /* HomophoneCardView.swift in Sources */,
