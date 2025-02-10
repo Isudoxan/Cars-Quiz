@@ -10,10 +10,12 @@ import UIKit
 class HomophonesViewController: UIViewController {
     
     // MARK: - Properties
+    
     private let storageManager = HomophonesStorageManager()
     private var homophonesGameEngine: HomophonesGameEngine?
     
     // MARK: - UI Components
+    
     private let containerView: UIView = {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,6 +66,7 @@ class HomophonesViewController: UIViewController {
     }
     
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,16 +74,14 @@ class HomophonesViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        let savedIndex = storageManager.loadCurrentIndex()
-        let homophonesList = HomophonesWithImagesProvider.createHomophonesWithImages(from: HomophonesProvider.homophones)
-        homophonesGameEngine = HomophonesGameEngine(homophones: homophonesList, startIndex: savedIndex)
-        
+        loadGameEngineAndHomophones()
         setupSubviews()
         setupConstraints()
         configure()
     }
 
     // MARK: - Methods
+    
     private func setupSubviews() {
         view.addSubview(containerView)
         containerView.addSubview(cardView)
@@ -145,5 +146,13 @@ class HomophonesViewController: UIViewController {
         gameEngine.nextHomophone()
         storageManager.saveCurrentIndex(gameEngine.getCurrentIndex())
         displayHomophone()
+    }
+    
+    private func loadGameEngineAndHomophones(){
+        let savedIndex = storageManager.loadCurrentIndex()
+        
+        let homophonesList = HomophonesWithImagesProvider.createHomophonesWithImages(from: HomophonesProvider.homophones)
+        
+        homophonesGameEngine = HomophonesGameEngine(homophones: homophonesList, startIndex: savedIndex)
     }
 }
