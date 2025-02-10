@@ -11,7 +11,7 @@ class HomophonesViewController: UIViewController {
     
     // MARK: - Properties
     private let storageManager = HomophonesStorageManager()
-    private var homophonesGameEngine: HomophonesGameEngine!
+    private var homophonesGameEngine: HomophonesGameEngine?
     
     // MARK: - UI Components
     private let containerView: UIView = {
@@ -128,19 +128,22 @@ class HomophonesViewController: UIViewController {
     }
     
     func displayHomophone() {
-        let homophone = homophonesGameEngine.currentHomophone
+        guard let gameEngine = homophonesGameEngine else { return }
+        let homophone = gameEngine.currentHomophone
         cardView.configure(with: homophone)
     }
-    
+
     @objc func previousButtonTap() {
-        homophonesGameEngine.previousHomophone()
-        storageManager.saveCurrentIndex(homophonesGameEngine.getCurrentIndex())
+        guard let gameEngine = homophonesGameEngine else { return }
+        gameEngine.previousHomophone()
+        storageManager.saveCurrentIndex(gameEngine.getCurrentIndex())
         displayHomophone()
     }
-    
+
     @objc func nextButtonTap() {
-        homophonesGameEngine.nextHomophone()
-        storageManager.saveCurrentIndex(homophonesGameEngine.getCurrentIndex())
+        guard let gameEngine = homophonesGameEngine else { return }
+        gameEngine.nextHomophone()
+        storageManager.saveCurrentIndex(gameEngine.getCurrentIndex())
         displayHomophone()
     }
 }
