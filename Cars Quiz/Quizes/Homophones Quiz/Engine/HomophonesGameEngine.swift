@@ -10,8 +10,8 @@ import Foundation
 class HomophonesGameEngine {
     
     // MARK: - Properties
-    private var homophonesList: [HomophoneWithImage]
-    private var currentHomophoneIndex: Int
+    var homophonesList: [HomophoneWithImage]
+    var currentHomophoneIndex: Int
     
     var currentHomophone: HomophoneWithImage {
         return homophonesList[currentHomophoneIndex]

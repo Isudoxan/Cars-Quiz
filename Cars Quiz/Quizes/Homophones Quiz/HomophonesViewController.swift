@@ -13,22 +13,26 @@ class HomophonesViewController: UIViewController {
     
     private let storageManager = HomophonesStorageManager()
     private var homophonesGameEngine: HomophonesGameEngine?
+    private var currentIndex: Int = 0
     
     // MARK: - UI Components
     
-    private let containerView: UIView = {
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .systemBackground
-        return containerView
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 25
+        layout.minimumInteritemSpacing = 0
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isPagingEnabled = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.decelerationRate = .normal
+        collectionView.backgroundColor = .white
+
+        return collectionView
     }()
-    
-    let cardView: HomophoneCardView = {
-        let cardView = HomophoneCardView()
-        cardView.translatesAutoresizingMaskIntoConstraints = false
-        return cardView
-    }()
-    
+
     private lazy var previousButton: UIButton = {
         let previousButton = UIButton()
         previousButton.translatesAutoresizingMaskIntoConstraints = false
@@ -36,8 +40,6 @@ class HomophonesViewController: UIViewController {
         previousButton.titleLabel?.font = .boldSystemFont(ofSize: 30)
         previousButton.setTitleColor(.black, for: .normal)
         previousButton.addTarget(self, action: #selector(previousButtonTap), for: .touchUpInside)
-        previousButton.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
-        previousButton.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         return previousButton
     }()
 
@@ -48,111 +50,137 @@ class HomophonesViewController: UIViewController {
         nextButton.titleLabel?.font = .boldSystemFont(ofSize: 30)
         nextButton.setTitleColor(.black, for: .normal)
         nextButton.addTarget(self, action: #selector(nextButtonTap), for: .touchUpInside)
-        nextButton.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
-        nextButton.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         return nextButton
     }()
-
-    @objc func buttonTouchDown(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: {
-            sender.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
-        })
-    }
-
-    @objc func buttonTouchUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: {
-            sender.transform = CGAffineTransform.identity
-        })
-    }
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("HomophonesViewController viewDidLoad")
+        view.backgroundColor = .white
         
-        view.backgroundColor = .systemBackground
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(HomophoneCollectionViewCell.self, forCellWithReuseIdentifier: HomophoneCollectionViewCell.identifier)
         
         loadGameEngineAndHomophones()
         setupSubviews()
         setupConstraints()
-        configure()
     }
 
     // MARK: - Methods
     
     private func setupSubviews() {
-        view.addSubview(containerView)
-        containerView.addSubview(cardView)
+        view.addSubview(collectionView)
         view.addSubview(previousButton)
         view.addSubview(nextButton)
     }
     
     private func setupConstraints() {
-        let containerViewConstrains = [
-            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        
+        let collectionViewConstrains = [
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: previousButton.topAnchor, constant: -25)
         ]
         
-        let cardViewConstrains = [
-            cardView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            cardView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -150),
-            cardView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15),
-            cardView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15)
-        ]
-        
-        let previousButtonConstraints = [
+        let previousButtonConstrains = [
             previousButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             previousButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             previousButton.widthAnchor.constraint(equalToConstant: 50),
             previousButton.heightAnchor.constraint(equalToConstant: 70)
         ]
-        
-        let nextButtonConstraints = [
+
+        let nextButtonConstrains = [
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             nextButton.widthAnchor.constraint(equalToConstant: 50),
             nextButton.heightAnchor.constraint(equalToConstant: 70)
         ]
         
-        NSLayoutConstraint.activate(containerViewConstrains)
-        NSLayoutConstraint.activate(cardViewConstrains)
-        NSLayoutConstraint.activate(previousButtonConstraints)
-        NSLayoutConstraint.activate(nextButtonConstraints)
+        NSLayoutConstraint.activate(collectionViewConstrains)
+        NSLayoutConstraint.activate(previousButtonConstrains)
+        NSLayoutConstraint.activate(nextButtonConstrains)
+        
     }
     
-    func configure() {
-        displayHomophone()
-    }
-    
-    func displayHomophone() {
-        guard let gameEngine = homophonesGameEngine else { return }
-        let homophone = gameEngine.currentHomophone
-        cardView.configure(with: homophone)
-    }
-
-    @objc func previousButtonTap() {
-        guard let gameEngine = homophonesGameEngine else { return }
-        gameEngine.previousHomophone()
-        storageManager.saveCurrentIndex(gameEngine.getCurrentIndex())
-        displayHomophone()
-    }
-
-    @objc func nextButtonTap() {
-        guard let gameEngine = homophonesGameEngine else { return }
-        gameEngine.nextHomophone()
-        storageManager.saveCurrentIndex(gameEngine.getCurrentIndex())
-        displayHomophone()
-    }
-    
-    private func loadGameEngineAndHomophones(){
+    private func loadGameEngineAndHomophones() {
         let savedIndex = storageManager.loadCurrentIndex()
         
         let homophonesList = HomophonesWithImagesProvider.createHomophonesWithImages(from: HomophonesProvider.homophones)
         
         homophonesGameEngine = HomophonesGameEngine(homophones: homophonesList, startIndex: savedIndex)
+        currentIndex = savedIndex
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.scrollToItem(at: self.currentIndex, animated: false)
+        }
+    }
+    
+    private func scrollToItem(at index: Int, animated: Bool) {
+        let clampedIndex = max(0, min(index, (homophonesGameEngine?.homophonesList.count ?? 1) - 1))
+        currentIndex = clampedIndex
+        storageManager.saveCurrentIndex(currentIndex)
+        
+        collectionView.scrollToItem(at: IndexPath(item: clampedIndex, section: 0), at: .centeredHorizontally, animated: animated)
+    }
+    
+    @objc func previousButtonTap() {
+        if currentIndex > 0 {
+            scrollToItem(at: currentIndex - 1, animated: true)
+        }
+    }
+
+    @objc func nextButtonTap() {
+        if let gameEngine = homophonesGameEngine, currentIndex < gameEngine.homophonesList.count - 1 {
+            scrollToItem(at: currentIndex + 1, animated: true)
+        }
+    }
+    
+    private func centerCardIfNeeded() {
+        let contentOffsetX = collectionView.contentOffset.x
+        let itemWidth = collectionView.frame.width * 0.85 + 25
+        let centeredIndex = Int((contentOffsetX + itemWidth / 2) / itemWidth)
+        
+        if centeredIndex != currentIndex {
+            scrollToItem(at: centeredIndex, animated: true)
+        }
+    }
+}
+
+// MARK: - Extensions
+
+extension HomophonesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return homophonesGameEngine?.homophonesList.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomophoneCollectionViewCell.identifier, for: indexPath) as! HomophoneCollectionViewCell
+        
+        if let homophone = homophonesGameEngine?.homophonesList[indexPath.item] {
+            cell.configure(with: homophone)
+        }
+        
+        return cell
+    }
+}
+
+extension HomophonesViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width * 0.85
+        let height = collectionView.frame.height
+        return CGSize(width: width, height: height)
+    }
+}
+
+extension HomophonesViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        centerCardIfNeeded()
     }
 }

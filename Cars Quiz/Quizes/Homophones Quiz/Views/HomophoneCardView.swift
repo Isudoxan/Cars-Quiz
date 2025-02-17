@@ -32,7 +32,6 @@ class HomophoneCardView: UIView {
         
         return secondWordImageView
     }()
-    
     private let transcriptionLabel: UILabel = {
         let transcriptionLabel = UILabel()
         transcriptionLabel.translatesAutoresizingMaskIntoConstraints = false
