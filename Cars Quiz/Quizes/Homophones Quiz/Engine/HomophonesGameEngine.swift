@@ -10,22 +10,20 @@ import Foundation
 class HomophonesGameEngine {
     
     // MARK: - Properties
-    
     private var homophonesList: [HomophoneWithImage]
-    private var currentHomophoneIndex = 0
+    private var currentHomophoneIndex: Int
     
     var currentHomophone: HomophoneWithImage {
         return homophonesList[currentHomophoneIndex]
     }
     
     // MARK: - Lifecycle
-    
-    init(homophones: [HomophoneWithImage]) {
+    init(homophones: [HomophoneWithImage], startIndex: Int) {
         self.homophonesList = homophones
+        self.currentHomophoneIndex = startIndex
     }
     
     // MARK: - Methods
-    
     func nextHomophone() {
         if currentHomophoneIndex < homophonesList.count - 1 {
             currentHomophoneIndex += 1
@@ -36,5 +34,9 @@ class HomophonesGameEngine {
         if currentHomophoneIndex > 0 {
             currentHomophoneIndex -= 1
         }
+    }
+    
+    func getCurrentIndex() -> Int {
+        return currentHomophoneIndex
     }
 }
