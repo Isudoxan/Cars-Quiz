@@ -17,7 +17,7 @@ class HomophonesViewController: UIViewController {
     
     // MARK: - UI Components
     
-    private let collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 25
@@ -25,33 +25,56 @@ class HomophonesViewController: UIViewController {
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.isPagingEnabled = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.decelerationRate = .normal
         collectionView.backgroundColor = .white
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(HomophoneCollectionViewCell.self, forCellWithReuseIdentifier: HomophoneCollectionViewCell.identifier)
 
         return collectionView
     }()
 
     private lazy var previousButton: UIButton = {
         let previousButton = UIButton()
+        
         previousButton.translatesAutoresizingMaskIntoConstraints = false
         previousButton.setTitle("←", for: .normal)
         previousButton.titleLabel?.font = .boldSystemFont(ofSize: 30)
         previousButton.setTitleColor(.black, for: .normal)
         previousButton.addTarget(self, action: #selector(previousButtonTap), for: .touchUpInside)
+        previousButton.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+        previousButton.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        
         return previousButton
     }()
 
     private lazy var nextButton: UIButton = {
         let nextButton = UIButton()
+        
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.setTitle("→", for: .normal)
         nextButton.titleLabel?.font = .boldSystemFont(ofSize: 30)
         nextButton.setTitleColor(.black, for: .normal)
         nextButton.addTarget(self, action: #selector(nextButtonTap), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+        nextButton.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+
+        
         return nextButton
     }()
+    
+    @objc func buttonTouchDown(_ sender: UIButton) {
+            UIView.animate(withDuration: 0.1, animations: {
+                sender.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            })
+        }
+
+    @objc func buttonTouchUp(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {
+            sender.transform = CGAffineTransform.identity
+        })
+    }
     
     // MARK: - Lifecycle
     
@@ -59,10 +82,6 @@ class HomophonesViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(HomophoneCollectionViewCell.self, forCellWithReuseIdentifier: HomophoneCollectionViewCell.identifier)
         
         loadGameEngineAndHomophones()
         setupSubviews()
@@ -78,7 +97,6 @@ class HomophonesViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        
         let collectionViewConstrains = [
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -103,7 +121,6 @@ class HomophonesViewController: UIViewController {
         NSLayoutConstraint.activate(collectionViewConstrains)
         NSLayoutConstraint.activate(previousButtonConstrains)
         NSLayoutConstraint.activate(nextButtonConstrains)
-        
     }
     
     private func loadGameEngineAndHomophones() {
@@ -121,11 +138,17 @@ class HomophonesViewController: UIViewController {
     }
     
     private func scrollToItem(at index: Int, animated: Bool) {
-        let clampedIndex = max(0, min(index, (homophonesGameEngine?.homophonesList.count ?? 1) - 1))
-        currentIndex = clampedIndex
-        storageManager.saveCurrentIndex(currentIndex)
+        if index < 0 {
+            currentIndex = 0
+        } else if let homophonesCount = homophonesGameEngine?.homophonesList.count, index >= homophonesCount {
+            currentIndex = homophonesCount - 1
+        } else {
+            currentIndex = index
+        }
         
-        collectionView.scrollToItem(at: IndexPath(item: clampedIndex, section: 0), at: .centeredHorizontally, animated: animated)
+        storageManager.saveCurrentIndex(currentIndex)
+
+        collectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .centeredHorizontally, animated: animated)
     }
     
     @objc func previousButtonTap() {
@@ -154,13 +177,14 @@ class HomophonesViewController: UIViewController {
 // MARK: - Extensions
 
 extension HomophonesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return homophonesGameEngine?.homophonesList.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomophoneCollectionViewCell.identifier, for: indexPath) as! HomophoneCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomophoneCollectionViewCell.identifier, for: indexPath) as? HomophoneCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         
         if let homophone = homophonesGameEngine?.homophonesList[indexPath.item] {
             cell.configure(with: homophone)
