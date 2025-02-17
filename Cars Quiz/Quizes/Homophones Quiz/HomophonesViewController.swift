@@ -145,8 +145,6 @@ class HomophonesViewController: UIViewController {
         } else {
             currentIndex = index
         }
-        
-        storageManager.saveCurrentIndex(currentIndex)
 
         collectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .centeredHorizontally, animated: animated)
     }
@@ -155,12 +153,14 @@ class HomophonesViewController: UIViewController {
         if currentIndex > 0 {
             scrollToItem(at: currentIndex - 1, animated: true)
         }
+        storageManager.saveCurrentIndex(currentIndex)
     }
 
     @objc func nextButtonTap() {
         if let gameEngine = homophonesGameEngine, currentIndex < gameEngine.homophonesList.count - 1 {
             scrollToItem(at: currentIndex + 1, animated: true)
         }
+        storageManager.saveCurrentIndex(currentIndex)
     }
     
     private func centerCardIfNeeded() {
@@ -206,5 +206,6 @@ extension HomophonesViewController: UICollectionViewDelegateFlowLayout {
 extension HomophonesViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         centerCardIfNeeded()
+        storageManager.saveCurrentIndex(currentIndex)
     }
 }
