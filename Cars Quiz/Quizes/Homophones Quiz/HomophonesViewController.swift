@@ -13,7 +13,14 @@ class HomophonesViewController: UIViewController {
     
     private let storageManager = HomophonesStorageManager()
     private var homophonesGameEngine: HomophonesGameEngine?
-    private var currentIndex: Int = 0
+    
+    private var currentIndex: Int {
+        return homophonesGameEngine?.currentHomophoneIndex ?? 0
+    }
+    
+    private var collectionViewItemWidth: CGFloat {
+        return collectionView.frame.width * 0.75 + 25
+    }
     
     // MARK: - UI Components
     
@@ -27,6 +34,7 @@ class HomophonesViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .white
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -60,21 +68,8 @@ class HomophonesViewController: UIViewController {
         nextButton.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
         nextButton.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
 
-        
         return nextButton
     }()
-    
-    @objc func buttonTouchDown(_ sender: UIButton) {
-            UIView.animate(withDuration: 0.1, animations: {
-                sender.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
-            })
-        }
-
-    @objc func buttonTouchUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: {
-            sender.transform = CGAffineTransform.identity
-        })
-    }
     
     // MARK: - Lifecycle
     
@@ -86,6 +81,7 @@ class HomophonesViewController: UIViewController {
         loadGameEngineAndHomophones()
         setupSubviews()
         setupConstraints()
+        displayCollectionView()
     }
 
     // MARK: - Methods
@@ -129,48 +125,56 @@ class HomophonesViewController: UIViewController {
         let homophonesList = HomophonesWithImagesProvider.createHomophonesWithImages(from: HomophonesProvider.homophones)
         
         homophonesGameEngine = HomophonesGameEngine(homophones: homophonesList, startIndex: savedIndex)
-        currentIndex = savedIndex
-        
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.scrollToItem(at: self.currentIndex, animated: false)
+    }
+    
+    private func displayCollectionView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            
+            collectionView.reloadData()
+            scrollToItem(at: currentIndex, animated: false)
         }
     }
     
-    private func scrollToItem(at index: Int, animated: Bool) {
-        if index < 0 {
-            currentIndex = 0
-        } else if let homophonesCount = homophonesGameEngine?.homophonesList.count, index >= homophonesCount {
-            currentIndex = homophonesCount - 1
-        } else {
-            currentIndex = index
-        }
-
+    private func scrollToItem(at index: Int, animated: Bool = true) {
         collectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .centeredHorizontally, animated: animated)
     }
     
     @objc func previousButtonTap() {
-        if currentIndex > 0 {
-            scrollToItem(at: currentIndex - 1, animated: true)
-        }
+        homophonesGameEngine?.previousHomophone()
+        scrollToItem(at: currentIndex)
         storageManager.saveCurrentIndex(currentIndex)
     }
 
     @objc func nextButtonTap() {
-        if let gameEngine = homophonesGameEngine, currentIndex < gameEngine.homophonesList.count - 1 {
-            scrollToItem(at: currentIndex + 1, animated: true)
-        }
+        homophonesGameEngine?.nextHomophone()
+        scrollToItem(at: currentIndex)
         storageManager.saveCurrentIndex(currentIndex)
+    }
+    
+    @objc func buttonTouchDown(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {
+            sender.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+        })
+    }
+
+    @objc func buttonTouchUp(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {
+            sender.transform = CGAffineTransform.identity
+        })
     }
     
     private func centerCardIfNeeded() {
         let contentOffsetX = collectionView.contentOffset.x
-        let itemWidth = collectionView.frame.width * 0.85 + 25
+        let itemWidth = collectionViewItemWidth + 25
         let centeredIndex = Int((contentOffsetX + itemWidth / 2) / itemWidth)
         
-        if centeredIndex != currentIndex {
-            scrollToItem(at: centeredIndex, animated: true)
-        }
+        updateCurrentIndexInEngine(centeredIndex)
+        scrollToItem(at: centeredIndex, animated: true)
+    }
+    
+    private func updateCurrentIndexInEngine(_ newCurrentIndex: Int) {
+        homophonesGameEngine?.currentHomophoneIndex = newCurrentIndex
     }
 }
 
@@ -195,17 +199,25 @@ extension HomophonesViewController: UICollectionViewDataSource, UICollectionView
 }
 
 extension HomophonesViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width * 0.85
+        let width = collectionViewItemWidth
         let height = collectionView.frame.height
         return CGSize(width: width, height: height)
     }
 }
 
 extension HomophonesViewController: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    func scrollingFinished(scrollView: UIScrollView) {
         centerCardIfNeeded()
         storageManager.saveCurrentIndex(currentIndex)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollingFinished(scrollView: scrollView)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard !decelerate else { return }
+        scrollingFinished(scrollView: scrollView)
     }
 }
